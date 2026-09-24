@@ -559,3 +559,10 @@
 - Email остаётся неинтерактивным (`SPAN`, без `<a>`/`<button>`), адрес выделяется/копируется; Telegram/hh — ссылки.
 - Проверка (CDP, dev и published): `combined = "Email: pharaunwizard@gmail.com"`; `introColor = labelColor = valueColor = rgb(200,168,148)`; email `SPAN`, Telegram/hh `A`; переполнения нет; `CONSOLE_ENTRIES: 0`.
 - Задача удалена из `tasks.json` (история — в git).
+
+## TASK-086 — Раздельная покраска Email — done
+
+- Значение email (`.contact__value`) — цвет `var(--color-text-muted)` (как `.contacts__intro`); подпись «Email:» (`.contact__label`) — `var(--color-sand)` (как подписи Telegram/hh).
+- `.contact__link--static` снова `color: var(--color-sand)` (подпись не потеряла цвет); hover нейтрализован; `.contact__value` явно muted, поэтому не меняется на hover.
+- Проверка (CDP): `emailValueColor = introColor = rgb(200,168,148)`; `emailLabelColor = telegramLabelColor = hhLabelColor = rgb(232,192,125)`; email — `SPAN` (не кликабелен), «Email: pharaunwizard@gmail.com»; `CONSOLE_ENTRIES: 0`.
+- Задача удалена из `tasks.json` (история — в git).
