@@ -16,7 +16,6 @@ else
             <li class="timeline__entry">
                 <SkillGroupCard Group="group"
                                 IsOpen="@(group.Id == openId)"
-                                IsFirst="@(group.Id == groups[0].Id)"
                                 OnToggle="Toggle" />
             </li>
         }

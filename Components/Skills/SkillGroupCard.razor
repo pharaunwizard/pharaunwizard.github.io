@@ -1,4 +1,4 @@
-<article class="exp-card @(IsOpen ? "exp-card--open" : "") @(IsFirst ? "exp-card--latest" : "")">
+<article class="exp-card @(IsOpen ? "exp-card--open" : "")">
     <button type="button"
             class="exp-card__header"
             aria-expanded="@IsOpen.ToString().ToLowerInvariant()"
@@ -12,10 +12,6 @@
                 <span class="exp-card__period">@Group.Items.Count навыков</span>
             }
         </span>
-        @if (IsFirst)
-        {
-            <span class="exp-card__badge">Основное</span>
-        }
         <span class="exp-card__chevron" aria-hidden="true">▾</span>
     </button>
 
@@ -46,9 +42,6 @@
 
     [Parameter]
     public bool IsOpen { get; set; }
-
-    [Parameter]
-    public bool IsFirst { get; set; }
 
     [Parameter]
     public EventCallback<string> OnToggle { get; set; }
