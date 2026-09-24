@@ -561,29 +561,29 @@ button.contact__link {
     height: var(--s);
     border-radius: 50%;
     background: var(--color-accent);
-    box-shadow: 0 0 4px rgba(214, 110, 54, 0.5);
-    opacity: 0.55;
+    box-shadow: 0 0 6px rgba(214, 110, 54, 0.65), 0 0 12px rgba(214, 110, 54, 0.25);
+    opacity: 0.5;
     animation: hero-dust var(--dur) ease-in-out var(--delay) infinite;
 }
 
 @keyframes hero-dust {
     0% {
         transform: translate3d(0, 0, 0);
-        opacity: 0.5;
+        opacity: 0.4;
     }
     25% {
-        transform: translate3d(7px, -16px, 0);
+        transform: translate3d(var(--dx1), var(--dy1), 0);
     }
     50% {
-        transform: translate3d(0, -28px, 0);
-        opacity: 0.75;
+        transform: translate3d(var(--dx2), var(--dy2), 0);
+        opacity: 0.6;
     }
     75% {
-        transform: translate3d(-7px, -12px, 0);
+        transform: translate3d(var(--dx3), var(--dy3), 0);
     }
     100% {
         transform: translate3d(0, 0, 0);
-        opacity: 0.5;
+        opacity: 0.4;
     }
 }
 
@@ -923,7 +923,7 @@ button.contact__link {
 
     .hero__particle {
         animation: none;
-        opacity: 0.55;
+        opacity: 0.5;
     }
 
     .reveal,
