@@ -174,3 +174,11 @@
 - Проверка (CDP, `performance.getEntriesByType('resource')`): при загрузке страницы запрошены ровно `profile.json`, `projects.json`, `experience.json` — по одному разу каждый, несмотря на 5 секций.
 - Пустые состояния: `AboutSection`, `ExperienceTimeline`, `ProjectsSection`, `ContactSection` показывают аккуратное `.empty-state`.
 - Проверка на пустых данных: временно `projects.json = []` → секция проектов показывает пустое состояние, приложение не падает, остальные секции (3 карточки опыта) работают; файл восстановлен.
+
+## TASK-018 — Защита email от спам-ботов — done
+
+- Email в HTML/DOM не хранится: для контакта типа `email` рендерится `<button>` без `href`; адрес собирается только в момент клика.
+- Добавлен `wwwroot/js/app.js` с `marsCv.openMailto(local, domain)` → `window.location.href = 'mailto:' + local + '@' + domain`; вызывается через JS-interop.
+- Telegram/hh остались обычными `<a>` и не затронуты.
+- Проверка (CDP): статический `index.html` не содержит `ivan.marsov@example.com`/`mailto:`; живой DOM также не содержит адрес; клик по кнопке email вызывает `openMailto` с `ivan.marsov@example.com`.
+- Примечание: адрес остаётся в `profile.json` (данные, не HTML) — согласно схеме §5.1 (`mailto:`).

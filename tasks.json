@@ -345,7 +345,7 @@
         "Шаг 3: ожидаемый результат — адрес не виден в исходнике, mailto работает"
       ],
       "dependencies": ["TASK-015"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-019",

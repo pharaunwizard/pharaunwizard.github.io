@@ -364,6 +364,12 @@ a:hover {
     color: var(--color-accent-strong);
 }
 
+button.contact__link {
+    font: inherit;
+    color: var(--color-text);
+    cursor: pointer;
+}
+
 /* ============================================================
    Hero (первый экран)
    ============================================================ */

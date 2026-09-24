@@ -1,4 +1,5 @@
 @inject ContentService Content
+@inject IJSRuntime JS
 
 <section class="section contacts" id="contacts" aria-labelledby="contacts-title">
     <div class="container">
@@ -18,13 +19,18 @@
                 @foreach (var contact in profile.Contacts)
                 {
                     <li class="contact contact--@contact.Type">
-                        <a class="contact__link"
-                           href="@contact.Url"
-                           data-type="@contact.Type"
-                           target="@(IsExternal(contact) ? "_blank" : null)"
-                           rel="@(IsExternal(contact) ? "noopener noreferrer" : null)">
-                            <span class="contact__label">@contact.Label</span>
-                        </a>
+                        @if (IsEmail(contact))
+                        {
+                            <button class="contact__link" type="button" data-type="@contact.Type" @onclick="() => OpenEmailAsync(contact)">
+                                <span class="contact__label">@contact.Label</span>
+                            </button>
+                        }
+                        else
+                        {
+                            <a class="contact__link" href="@contact.Url" data-type="@contact.Type" target="_blank" rel="noopener noreferrer">
+                                <span class="contact__label">@contact.Label</span>
+                            </a>
+                        }
                     </li>
                 }
             </ul>
@@ -40,6 +46,24 @@
         profile = await Content.GetProfileAsync();
     }
 
-    private static bool IsExternal(ContactLink contact)
-        => !contact.Url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase);
+    private static bool IsEmail(ContactLink contact)
+        => contact.Type.Equals("email", StringComparison.OrdinalIgnoreCase)
+           || contact.Url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase);
+
+    private async Task OpenEmailAsync(ContactLink contact)
+    {
+        var address = contact.Url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase)
+            ? contact.Url["mailto:".Length..]
+            : contact.Url;
+
+        var at = address.IndexOf('@');
+        if (at <= 0)
+        {
+            return;
+        }
+
+        var local = address[..at];
+        var domain = address[(at + 1)..];
+        await JS.InvokeVoidAsync("marsCv.openMailto", local, domain);
+    }
 }
