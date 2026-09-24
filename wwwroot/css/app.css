@@ -213,40 +213,106 @@ a:hover {
     background-color: var(--color-surface);
 }
 
-/* Загрузчик Blazor */
-.loading-progress {
-    position: absolute;
+/* Скелет до гидратации Blazor */
+.boot-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--color-surface);
+    z-index: 100;
+}
+
+.boot-progress__bar {
     display: block;
-    width: 8rem;
-    height: 8rem;
-    inset: 20vh 0 auto 0;
-    margin: 0 auto;
+    height: 100%;
+    width: var(--blazor-load-percentage, 0%);
+    background: linear-gradient(90deg, var(--color-accent), var(--color-sand));
+    transition: width 0.2s ease;
 }
 
-.loading-progress circle {
-    fill: none;
-    stroke: var(--color-surface-2);
-    stroke-width: 0.6rem;
-    transform-origin: 50% 50%;
-    transform: rotate(-90deg);
+.boot-skeleton {
+    display: grid;
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    gap: var(--space-7);
+    align-items: center;
+    min-height: 100svh;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding: var(--space-8) var(--space-5);
 }
 
-.loading-progress circle:last-child {
-    stroke: var(--color-accent);
-    stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
-    transition: stroke-dasharray 0.05s ease-in-out;
+.boot-skeleton__photo {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+    display: block;
 }
 
-.loading-progress-text {
-    position: absolute;
-    text-align: center;
-    font-weight: bold;
-    color: var(--color-text-muted);
-    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+.boot-skeleton__lines {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
 }
 
-.loading-progress-text::after {
-    content: var(--blazor-load-percentage-text, "Загрузка");
+.boot-skeleton__line {
+    height: 1.1rem;
+    border-radius: 8px;
+}
+
+.boot-skeleton__line--title {
+    height: 3rem;
+    width: 60%;
+}
+
+.boot-skeleton__line--role {
+    height: 1.6rem;
+    width: 40%;
+}
+
+.boot-skeleton__line--short {
+    width: 70%;
+}
+
+.boot-skeleton__cta {
+    height: 3rem;
+    width: 14rem;
+    border-radius: var(--radius-md);
+    margin-top: var(--space-2);
+}
+
+.boot-skeleton__photo,
+.boot-skeleton__line,
+.boot-skeleton__cta {
+    background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-surface-2) 37%, var(--color-surface) 63%);
+    background-size: 400% 100%;
+    animation: skeleton-shimmer 1.4s ease infinite;
+}
+
+@media (max-width: 720px) {
+    .boot-skeleton {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .boot-skeleton__photo {
+        max-width: 168px;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+    }
+
+    .boot-skeleton__lines {
+        align-items: center;
+        width: 100%;
+    }
+
+    .boot-skeleton__line--title {
+        width: 70%;
+    }
 }
 
 #blazor-error-ui {

@@ -242,3 +242,14 @@
 - Контраст (WCAG AA, расчёт): text/bg 15.88, muted/bg 8.65, muted/surface 7.96, dim/surface 4.84, accent/bg 5.6, sand/bg 11.19, кнопка 5.53 — все ≥ 4.5:1.
 - Фокус: глобальный `:focus-visible` (3px контур) на интерактивных элементах (кнопки таймлайна, ссылки, контакты).
 - Проверка (CDP DOM-аудит): `h1Count=1`, `h2Count=4`, `alt` заполнен, `aria-labelledby` корректен.
+
+## TASK-034 — Производительность Blazor WASM — done
+
+- Установлен workload `wasm-tools`: publish выполняет нативную оптимизацию (`wasm-opt -O2`, relinking) и генерирует Brotli+gzip (`.br`/`.gz`).
+- В csproj: `PublishTrimmed=true`, `BlazorEnableCompression=true`, `InvariantGlobalization=true` (удалены ICU-данные `icudt*` ~2.5 МБ).
+- Удалены неиспользуемые шаблонные ресурсы/страницы (Bootstrap `lib/`, `sample-data/`, Counter/Weather/NavMenu) — размер публикации снижен с 34.4 МБ до 8.8 МБ.
+- До гидратации показывается лёгкий скелет Hero (`boot-skeleton`) + тонкий прогресс-бар по `--blazor-load-percentage`; фото-заглушка — inline-SVG `<img>`, поэтому становится ранним LCP-кандидатом.
+- Проверка (CDP, эмуляция 390×844, `Network` ~1.6 Мбит/с + `CPU×4`, published + Brotli-сервер):
+  - **LCP = 676 мс** (≤ 2.5 с), элемент — скелет-фото;
+  - **CLS = 0.064** (≤ 0.1);
+  - приложение полностью отрисовано (5 секций), консоль чистая.

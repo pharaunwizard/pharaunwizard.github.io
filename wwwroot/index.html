@@ -34,11 +34,20 @@
 
 <body>
     <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
+        <div class="boot-progress" role="status" aria-live="polite" aria-label="Загрузка приложения">
+            <span class="boot-progress__bar"></span>
+        </div>
+        <div class="boot-skeleton" aria-hidden="true">
+            <img class="boot-skeleton__photo" alt=""
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 800'%3E%3Crect width='640' height='800' fill='%233a1c14'/%3E%3Ccircle cx='320' cy='250' r='110' fill='%23d66e36'/%3E%3Cellipse cx='320' cy='560' rx='175' ry='230' fill='%23783e28'/%3E%3C/svg%3E" />
+            <div class="boot-skeleton__lines">
+                <div class="boot-skeleton__line boot-skeleton__line--title"></div>
+                <div class="boot-skeleton__line boot-skeleton__line--role"></div>
+                <div class="boot-skeleton__line"></div>
+                <div class="boot-skeleton__line boot-skeleton__line--short"></div>
+                <div class="boot-skeleton__cta"></div>
+            </div>
+        </div>
     </div>
 
     <div id="blazor-error-ui">
