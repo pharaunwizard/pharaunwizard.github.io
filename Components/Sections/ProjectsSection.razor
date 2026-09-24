@@ -16,16 +16,7 @@
             <div class="projects__grid">
                 @foreach (var project in items)
                 {
-                    <article class="project-card">
-                        <h3>@project.Title</h3>
-                        <p>@project.Description</p>
-                        <ul class="tech-list">
-                            @foreach (var tech in project.Technologies)
-                            {
-                                <li>@tech</li>
-                            }
-                        </ul>
-                    </article>
+                    <ProjectCard Item="project" />
                 }
             </div>
         }

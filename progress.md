@@ -145,3 +145,11 @@
   - `wwwroot/_redirects` — SPA-fallback для Cloudflare Pages / Netlify.
   - `.github/workflows/deploy.yml` — сборка `dotnet publish -c Release` + артефакт `wwwroot`; шаг деплоя в Azure Static Web Apps (по секрету `AZURE_STATIC_WEB_APPS_API_TOKEN`) и инструкции по фоллбэкам (Cloudflare Pages, Yandex Object Storage).
 - **Блокер:** фактический деплой и публичный URL невозможны без одобрения заявки Azure SWA либо учётных данных провайдера. Статус оставлен `pending` до появления доступа.
+
+## TASK-014 — Секция пет-проектов — done
+
+- Создан `ProjectCard.razor`; `ProjectsSection.razor` рендерит сетку из `ProjectCard` по данным `projects.json`.
+- Карточка: изображение (если есть), название, описание, технологии, ссылки «Репозиторий»/«Демо».
+- Ссылки рендерятся только при наличии URL, открываются в новой вкладке с `rel="noopener noreferrer"`; проект без ссылок (JsonConfig) отображается корректно.
+- Добавлен адаптивный grid `.projects__grid` (`repeat(auto-fill, minmax(280px, 1fr))`).
+- Проверка (CDP): 4 карточки, заголовки совпадают с `projects.json`, все 4 ссылки имеют `target=_blank` и `rel=noopener noreferrer`.

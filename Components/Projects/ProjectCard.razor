@@ -1,0 +1,40 @@
+<article class="project-card">
+    @if (!string.IsNullOrWhiteSpace(Item.ImageUrl))
+    {
+        <img class="project-card__image" src="@Item.ImageUrl" alt="@($"Превью проекта {Item.Title}")" loading="lazy" />
+    }
+
+    <h3 class="project-card__title">@Item.Title</h3>
+    <p class="project-card__description">@Item.Description</p>
+
+    @if (Item.Technologies.Count > 0)
+    {
+        <ul class="tech-list">
+            @foreach (var tech in Item.Technologies)
+            {
+                <li>@tech</li>
+            }
+        </ul>
+    }
+
+    @if (HasLinks)
+    {
+        <div class="project-card__links">
+            @if (!string.IsNullOrWhiteSpace(Item.RepoUrl))
+            {
+                <a class="project-card__link" href="@Item.RepoUrl" target="_blank" rel="noopener noreferrer">Репозиторий</a>
+            }
+            @if (!string.IsNullOrWhiteSpace(Item.DemoUrl))
+            {
+                <a class="project-card__link" href="@Item.DemoUrl" target="_blank" rel="noopener noreferrer">Демо</a>
+            }
+        </div>
+    }
+</article>
+
+@code {
+    [Parameter, EditorRequired]
+    public Project Item { get; set; } = default!;
+
+    private bool HasLinks => !string.IsNullOrWhiteSpace(Item.RepoUrl) || !string.IsNullOrWhiteSpace(Item.DemoUrl);
+}
