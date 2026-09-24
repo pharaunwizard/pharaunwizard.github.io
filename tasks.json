@@ -649,7 +649,7 @@
         "Шаг 3: ожидаемый результат — всё работает, консоль чистая"
       ],
       "dependencies": ["TASK-016", "TASK-017", "TASK-024", "TASK-030"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-036",

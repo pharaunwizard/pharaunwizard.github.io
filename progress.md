@@ -259,3 +259,17 @@
 - Скан репозитория (исключая `bin/obj/.git`) по паттернам `api key`, `secret`, `password`, `token`, `PRIVATE KEY`, `connection string`, `AccountKey`, `client_secret`, `Bearer ...` — реальных секретов нет.
 - Единственные совпадения: выражения GitHub Actions `${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}` в `.github/workflows/deploy.yml` (секреты не хранятся в репозитории, а передаются из CI) и текст в документации.
 - Итог: API-ключей, токенов и паролей в коде/конфигах нет.
+
+## TASK-035 — Финальная сквозная проверка — done
+
+Проверка опубликованной сборки (Brotli-сервер, эмуляция 1200×900, CDP):
+- Порядок секций: `hero → about → experience → projects → contacts` (PRD §3.1).
+- Контент: 3 записи опыта, 4 проекта, 3 контакта, 3 абзаца «Обо мне».
+- Внешние ссылки: 7 шт., все `linksSafe=true` (`target=_blank`, `rel="noopener noreferrer"`).
+- Интерактив: клик по 2-й карточке опыта → открыта «Orbit Retail», ровно 1 открытая карточка; scroll-reveal → 4 секции `is-visible`.
+- Консоль: `CONSOLE_ENTRIES: 0`.
+
+## TASK-036 — Превью ссылки в Telegram/hh — BLOCKED (pending)
+
+- Требуется публичный URL (зависит от TASK-006), которого пока нет из-за отсутствия одобрения хостинга/доступа.
+- OG/Twitter-теги и изображение 1200×630 готовы (TASK-004) и присутствуют в статическом `index.html`; после деплоя останется только проверить разворот ссылки. Статус оставлен `pending`.
