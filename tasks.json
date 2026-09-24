@@ -558,7 +558,7 @@
         "Шаг 3: ожидаемый результат — вёрстка корректна на всех ширинах"
       ],
       "dependencies": ["TASK-022", "TASK-023", "TASK-024", "TASK-025", "TASK-026"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-031",

@@ -221,3 +221,9 @@
 - Дополнительно: `.hero__scroll-arrow` — `animation: none`; `.mars-bg__particle` — `display: none` (фон без движения); `.reveal` принудительно видим.
 - `marsCv.initReveal()` при reduce-motion не добавляет класс `reveal` вовсе (контент сразу читаем).
 - Проверка (CDP с `Emulation.setEmulatedMedia` reduce): `revealCount=0`, частицы `display:none`, анимация стрелки `none`, opacity секции `1`.
+
+## TASK-030 — Адаптивность 360/768/1024/1440 — done
+
+- Проверка (CDP, эмуляция ширин): при 360/768/1024/1440 `scrollWidth == innerWidth`, документ не имеет горизонтального переполнения.
+- Единственный выходящий за viewport элемент — `.mars-bg__glow` (декоративный слой внутри `.mars-bg` с `overflow:hidden`) — на overflow страницы не влияет.
+- CTA hh видна на всех ширинах; карточки проектов перестраиваются (1/2/3 колонки), таймлайн и контакты адаптируются.
