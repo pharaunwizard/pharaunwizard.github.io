@@ -22,12 +22,14 @@
                         @if (IsEmail(contact))
                         {
                             <button class="contact__link" type="button" data-type="@contact.Type" @onclick="() => OpenEmailAsync(contact)">
+                                <ContactIcon Type="@contact.Type" />
                                 <span class="contact__label">@contact.Label</span>
                             </button>
                         }
                         else
                         {
                             <a class="contact__link" href="@contact.Url" data-type="@contact.Type" target="_blank" rel="noopener noreferrer">
+                                <ContactIcon Type="@contact.Type" />
                                 <span class="contact__label">@contact.Label</span>
                             </a>
                         }

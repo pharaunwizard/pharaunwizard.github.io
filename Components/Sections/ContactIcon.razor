@@ -1,0 +1,35 @@
+<span class="contact__icon" aria-hidden="true">
+    @switch (Type)
+    {
+        case "telegram":
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 3 11 14" />
+                <path d="M22 3 15 21l-4-7-7-4 18-7z" />
+            </svg>
+            break;
+        case "hh":
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" />
+                <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                <path d="M2 12h20" />
+            </svg>
+            break;
+        case "email":
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 7-10 6L2 7" />
+            </svg>
+            break;
+        default:
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18" />
+            </svg>
+            break;
+    }
+</span>
+
+@code {
+    [Parameter]
+    public string Type { get; set; } = string.Empty;
+}
