@@ -566,3 +566,9 @@
 - `.contact__link--static` снова `color: var(--color-sand)` (подпись не потеряла цвет); hover нейтрализован; `.contact__value` явно muted, поэтому не меняется на hover.
 - Проверка (CDP): `emailValueColor = introColor = rgb(200,168,148)`; `emailLabelColor = telegramLabelColor = hhLabelColor = rgb(232,192,125)`; email — `SPAN` (не кликабелен), «Email: pharaunwizard@gmail.com»; `CONSOLE_ENTRIES: 0`.
 - Задача удалена из `tasks.json` (история — в git).
+
+## TASK-087 — Текст кнопки Hero «Резюме на hh.ru» — done
+
+- Текст кнопки в Hero изменён: «Смотреть резюме на hh.ru» → «Резюме на hh.ru». Ссылка, `target="_blank"` и `rel="noopener noreferrer"` без изменений.
+- Проверка (CDP, dev и published): текст кнопки = «Резюме на hh.ru», старого текста в DOM нет, `href` на hh, `target=_blank`, `rel="noopener noreferrer"`; `CONSOLE_ENTRIES: 0`.
+- Задача удалена из `tasks.json` (история — в git).
