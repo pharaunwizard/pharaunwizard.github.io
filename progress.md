@@ -137,3 +137,11 @@
 - Публикуемый `index.html` содержит статические OG-теги.
 - Проверка: локальный статический сервер (Node, `static-server.js`) отдаёт сборку: `index.html` → 200, `_framework/blazor.webassembly*.js` → 200 (`text/javascript`), CDP-рендер подтверждает 5 секций, 3 карточки опыта, 4 проекта — не хуже dev-режима.
 - Замечание: publish сообщает «Publishing without optimizations» (нет workload `wasm-tools`) — обрабатывается в TASK-034.
+
+## TASK-006 — Хостинг и CI — BLOCKED (pending)
+
+- Подготовлена инфраструктура деплоя (можно разворачивать сразу после получения доступа):
+  - `wwwroot/staticwebapp.config.json` — SPA-fallback, MIME для `.wasm/.webp/.avif`, security-заголовки.
+  - `wwwroot/_redirects` — SPA-fallback для Cloudflare Pages / Netlify.
+  - `.github/workflows/deploy.yml` — сборка `dotnet publish -c Release` + артефакт `wwwroot`; шаг деплоя в Azure Static Web Apps (по секрету `AZURE_STATIC_WEB_APPS_API_TOKEN`) и инструкции по фоллбэкам (Cloudflare Pages, Yandex Object Storage).
+- **Блокер:** фактический деплой и публичный URL невозможны без одобрения заявки Azure SWA либо учётных данных провайдера. Статус оставлен `pending` до появления доступа.
