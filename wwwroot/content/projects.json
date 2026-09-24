@@ -1,0 +1,38 @@
+[
+  {
+    "id": "proj-marscv",
+    "title": "Mars CV",
+    "description": "Одностраничное портфолио-резюме на Blazor WebAssembly с марсианской темой, JSON-контентом и аккордеон-таймлайном опыта.",
+    "technologies": ["Blazor WebAssembly", ".NET 10", "C#", "CSS", "JavaScript Interop"],
+    "repoUrl": "https://github.com/ivan-marsov/mars-cv",
+    "demoUrl": "https://mars-cv.azurestaticapps.net/",
+    "imageUrl": null
+  },
+  {
+    "id": "proj-fastqueue",
+    "title": "FastQueue",
+    "description": "Лёгкая библиотека для фоновой обработки задач в .NET с поддержкой приоритетов, повторов и распределённых воркеров.",
+    "technologies": [".NET", "C#", "Redis", "NuGet"],
+    "repoUrl": "https://github.com/ivan-marsov/fastqueue",
+    "demoUrl": null,
+    "imageUrl": null
+  },
+  {
+    "id": "proj-apimonitor",
+    "title": "ApiMonitor",
+    "description": "Сервис мониторинга здоровья HTTP-API: проверки доступности, метрики latency и алерты при деградации.",
+    "technologies": ["ASP.NET Core", "C#", "PostgreSQL", "Prometheus", "Docker"],
+    "repoUrl": "https://github.com/ivan-marsov/api-monitor",
+    "demoUrl": null,
+    "imageUrl": null
+  },
+  {
+    "id": "proj-jsonconfig",
+    "title": "JsonConfig",
+    "description": "Утилита командной строки для валидации и форматирования JSON-конфигов с поддержкой схем.",
+    "technologies": ["C#", ".NET", "System.Text.Json"],
+    "repoUrl": null,
+    "demoUrl": null,
+    "imageUrl": null
+  }
+]

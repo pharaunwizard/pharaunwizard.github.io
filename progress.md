@@ -44,3 +44,35 @@
 - `Project`: Id, Title, Description, Technologies, RepoUrl, DemoUrl, ImageUrl.
 
 Соответствует PRD §5.1–5.3. `dotnet build` — 0 ошибок.
+
+## TASK-008 — ContentService + DI — done
+
+- `Services/ContentService.cs`: загрузка `content/profile.json`, `content/experience.json`, `content/projects.json` через `HttpClient.GetFromJsonAsync`.
+- Результаты кэшируются через поля `Task<...>` — повторные обращения к одним файлам не выполняются.
+- Ошибки чтения/десериализации обрабатываются: возвращается `null` / пустой список (основа пустых состояний).
+- Зарегистрирован в DI (`Program.cs`: `AddScoped<ContentService>()`).
+- Проверка: сборка без ошибок; десериализация JSON в реальные модели подтверждена отдельным тестовым прогоном (см. ниже).
+
+## TASK-009 — profile.json — done
+
+- `wwwroot/content/profile.json`: name, role, offer, photoUrl, about (3 абзаца), contacts (telegram, hh, email).
+- Валиден по схеме §5.1; десериализуется в `Profile`.
+
+## TASK-010 — experience.json — done
+
+- `wwwroot/content/experience.json`: 3 записи с разными периодами (2023, 2020, 2017).
+- У всех заполнены summary, details, achievements, technologies.
+- Валиден по схеме §5.2; десериализуется в `List<ExperienceItem>`.
+
+## TASK-011 — projects.json — done
+
+- `wwwroot/content/projects.json`: 4 проекта; заполнены title, description, technologies; часть repoUrl/demoUrl равна null.
+- Валиден по схеме §5.3; десериализуется в `List<Project>`.
+
+### Верификация контентного слоя (TASK-008–011)
+
+Временный console-проект с линковкой реальных `Models/*.cs` и `System.Text.Json` (Web-настройки) успешно:
+- десериализовал `profile.json` → 3 контакта, 3 абзаца about;
+- `experience.json` → 3 записи;
+- `projects.json` → 4 проекта.
+Вывод: `DESERIALIZATION OK`. Плейсхолдер-фото: `wwwroot/img/profile.png`.
