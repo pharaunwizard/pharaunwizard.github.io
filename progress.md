@@ -501,3 +501,16 @@
 - CSS-переменные: `--font-sans: 'Inter', …`, `--font-display: 'Unbounded', …`; заголовки `h1/h2/h3` (включая имя в Hero и названия секций) переведены на Unbounded, системный стек оставлен fallback.
 - В `index.html` добавлен `preload` для `inter-cyrillic.woff2` и `unbounded-cyrillic.woff2`.
 - Проверка (CDP, dev и published): `document.fonts.check` для кириллицы Inter и Unbounded = true; `body` → Inter, `h1` → Unbounded; шрифты грузятся с 'self'; кириллица отображается корректно; CSP без ошибок; нет горизонтального переполнения на 360/1024/1440; LCP (без искусственного throttling) ≈ 1.0 c (элемент — hero-фото); `CONSOLE_ENTRIES: 0`.
+
+## TASK-073 — Валидация JSON-контента перед сборкой — done
+
+- Создан инструмент `tools/ContentValidator` (console, net10.0) — проверяет синтаксис всех `wwwroot/content/*.json` через `System.Text.Json`, печатает файл, строку и позицию ошибки, возвращает ненулевой код.
+- В `MarsCV.csproj` добавлен MSBuild-target `ValidateContentJson` (`BeforeTargets="BeforeBuild"`), который автоматически запускает валидатор; папка `tools/**` исключена из компиляции основного проекта.
+- Проверка: `dotnet build` с валидным контентом — «Content JSON validation passed (4 files)», сборка успешна; с намеренно сломанным `projects.json` — сборка падает с сообщением `Invalid JSON in …/projects.json (line 0, position 34): …`; после восстановления снова успешно.
+- Работает и локально, и в CI (`dotnet publish` в workflow также вызывает `BeforeBuild`).
+
+## TASK-074 — Убрать бейдж «Текущее» у свежей записи опыта — done
+
+- Удалён `<span class="exp-card__badge">Текущее</span>` из `ExperienceItemCard.razor`; текст «Текущее» отсутствует в разметке/DOM.
+- Визуальное выделение сохранено через класс `exp-card--latest` (акцентная рамка + светящийся маркер); выделена ровно одна (верхняя) запись.
+- Проверка (CDP, 360/1024/1440): `badgeText=false`, `.exp-card__badge`=0, `.exp-card--latest`=1 («Nova Fintech»), открыта одна карточка, 3 записи; переполнения нет; `CONSOLE_ENTRIES: 0`.

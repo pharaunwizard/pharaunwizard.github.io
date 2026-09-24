@@ -15,4 +15,20 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.12" PrivateAssets="all" />
   </ItemGroup>
 
+  <!-- Инструмент валидации контента не участвует в компиляции основного проекта -->
+  <ItemGroup>
+    <Compile Remove="tools/**" />
+    <None Remove="tools/**" />
+    <Content Remove="tools/**" />
+    <EmbeddedResource Remove="tools/**" />
+  </ItemGroup>
+
+  <!-- Валидация JSON-контента перед сборкой: ловит опечатки в wwwroot/content/*.json.
+       Выполняется отдельным file-based приложением через `dotnet run` (работает локально и в CI). -->
+  <Target Name="ValidateContentJson" BeforeTargets="BeforeBuild">
+    <Exec Command="dotnet run --project &quot;$(MSBuildProjectDirectory)/tools/ContentValidator/ContentValidator.csproj&quot; -- &quot;$(MSBuildProjectDirectory)/wwwroot/content&quot;"
+          WorkingDirectory="$(MSBuildProjectDirectory)"
+          StandardOutputImportance="normal" />
+  </Target>
+
 </Project>
