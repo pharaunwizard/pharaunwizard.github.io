@@ -1,0 +1,97 @@
+@using System.Globalization
+
+<article class="exp-card @(IsOpen ? "exp-card--open" : "") @(IsLatest ? "exp-card--latest" : "")">
+    <button type="button"
+            class="exp-card__header"
+            aria-expanded="@IsOpen.ToString().ToLowerInvariant()"
+            aria-controls="@PanelId"
+            @onclick="HandleToggle">
+        <span class="exp-card__marker" aria-hidden="true"></span>
+        <span class="exp-card__headings">
+            <span class="exp-card__company">@Item.Company</span>
+            <span class="exp-card__role">@Item.Role</span>
+            <span class="exp-card__period">
+                @Period
+                @if (Item.Location is not null)
+                {
+                    <span class="exp-card__location">· @Item.Location</span>
+                }
+            </span>
+        </span>
+        @if (IsLatest)
+        {
+            <span class="exp-card__badge">Текущее</span>
+        }
+        <span class="exp-card__chevron" aria-hidden="true">▾</span>
+    </button>
+
+    <p class="exp-card__summary">@Item.Summary</p>
+
+    <div id="@PanelId" class="exp-card__panel" aria-hidden="@(!IsOpen)">
+        <div class="exp-card__panel-inner">
+            <div class="exp-card__panel-body">
+            @if (Item.Details.Count > 0)
+            {
+                <div class="exp-card__details">
+                    @foreach (var paragraph in Item.Details)
+                    {
+                        <p>@paragraph</p>
+                    }
+                </div>
+            }
+
+            @if (Item.Achievements.Count > 0)
+            {
+                <h4 class="exp-card__subtitle">Достижения</h4>
+                <ul class="exp-card__achievements">
+                    @foreach (var achievement in Item.Achievements)
+                    {
+                        <li>@achievement</li>
+                    }
+                </ul>
+            }
+
+            @if (Item.Technologies.Count > 0)
+            {
+                <h4 class="exp-card__subtitle">Технологии</h4>
+                <ul class="tech-list">
+                    @foreach (var tech in Item.Technologies)
+                    {
+                        <li>@tech</li>
+                    }
+                </ul>
+            }
+            </div>
+        </div>
+    </div>
+</article>
+
+@code {
+    [Parameter, EditorRequired]
+    public ExperienceItem Item { get; set; } = default!;
+
+    [Parameter]
+    public bool IsOpen { get; set; }
+
+    [Parameter]
+    public bool IsLatest { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnToggle { get; set; }
+
+    private string PanelId => $"exp-panel-{Item.Id}";
+
+    private string Period => $"{Format(Item.StartDate)} – {(string.IsNullOrWhiteSpace(Item.EndDate) ? "наст. время" : Format(Item.EndDate))}";
+
+    private Task HandleToggle() => OnToggle.InvokeAsync(Item.Id);
+
+    private static string Format(string value)
+    {
+        if (DateTime.TryParseExact(value, "yyyy-MM", CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+        {
+            return date.ToString("MM.yyyy", CultureInfo.InvariantCulture);
+        }
+
+        return value;
+    }
+}

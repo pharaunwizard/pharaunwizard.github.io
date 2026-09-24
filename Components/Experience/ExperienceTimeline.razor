@@ -1,0 +1,41 @@
+@inject ContentService Content
+
+@if (items is null)
+{
+    <div class="skeleton timeline__skeleton" aria-hidden="true"></div>
+}
+else if (items.Count == 0)
+{
+    <p class="empty-state">Список опыта пока пуст.</p>
+}
+else
+{
+    <ol class="timeline">
+        @foreach (var item in items)
+        {
+            <li class="timeline__entry">
+                <ExperienceItemCard Item="item"
+                                    IsOpen="@(item.Id == openId)"
+                                    IsLatest="@(item.Id == items[0].Id)"
+                                    OnToggle="Toggle" />
+            </li>
+        }
+    </ol>
+}
+
+@code {
+    private List<ExperienceItem>? items;
+    private string? openId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var loaded = await Content.GetExperienceAsync();
+        items = loaded.OrderByDescending(i => i.StartDate).ToList();
+        openId = items.FirstOrDefault()?.Id;
+    }
+
+    private void Toggle(string id)
+    {
+        openId = openId == id ? null : id;
+    }
+}

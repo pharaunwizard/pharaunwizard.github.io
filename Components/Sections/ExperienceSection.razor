@@ -1,37 +1,6 @@
-@inject ContentService Content
-
 <section class="section experience" id="experience" aria-labelledby="experience-title">
     <div class="container">
         <h2 id="experience-title" class="section__title">Опыт</h2>
-        @if (items is null)
-        {
-            <div class="skeleton experience__skeleton" aria-hidden="true"></div>
-        }
-        else if (items.Count == 0)
-        {
-            <p class="empty-state">Список опыта пока пуст.</p>
-        }
-        else
-        {
-            <ul class="experience__list">
-                @foreach (var item in items.OrderByDescending(i => i.StartDate))
-                {
-                    <li class="experience__item">
-                        <h3>@item.Company</h3>
-                        <p>@item.Role · @item.StartDate–@(item.EndDate ?? "наст. время")</p>
-                        <p>@item.Summary</p>
-                    </li>
-                }
-            </ul>
-        }
+        <ExperienceTimeline />
     </div>
 </section>
-
-@code {
-    private List<ExperienceItem>? items;
-
-    protected override async Task OnInitializedAsync()
-    {
-        items = await Content.GetExperienceAsync();
-    }
-}
