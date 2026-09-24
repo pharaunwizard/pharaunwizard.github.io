@@ -798,4 +798,18 @@ button.contact__link {
         animation-iteration-count: 1 !important;
         transition-duration: 0.001ms !important;
     }
+
+    .hero__scroll-arrow {
+        animation: none;
+    }
+
+    .mars-bg__particle {
+        display: none;
+    }
+
+    .reveal,
+    .reveal.is-visible {
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }

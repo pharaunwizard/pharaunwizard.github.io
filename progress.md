@@ -214,3 +214,10 @@
 - `Components/ScrollReveal.razor` вызывает инициализацию после первого рендера (JS-interop с обработкой отключения).
 - CSS: `.reveal` использует только `opacity` + `translateY` и `transition`; при отсутствии JS/reduced-motion контент виден (класс вешает JS).
 - Проверка (CDP): до скролла 4 секции `.reveal`, 0 видимых; после прокрутки вниз — 4 `is-visible` из 5 секций (hero исключён), консоль чистая.
+
+## TASK-029 — prefers-reduced-motion — done
+
+- Глобальный блок `@media (prefers-reduced-motion: reduce)`: отключены все `animation`/`transition`, `scroll-behavior: auto`.
+- Дополнительно: `.hero__scroll-arrow` — `animation: none`; `.mars-bg__particle` — `display: none` (фон без движения); `.reveal` принудительно видим.
+- `marsCv.initReveal()` при reduce-motion не добавляет класс `reveal` вовсе (контент сразу читаем).
+- Проверка (CDP с `Emulation.setEmulatedMedia` reduce): `revealCount=0`, частицы `display:none`, анимация стрелки `none`, opacity секции `1`.
