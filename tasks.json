@@ -236,7 +236,7 @@
         "Шаг 3: ожидаемый результат — порядок соответствует PRD §3.1"
       ],
       "dependencies": ["TASK-008"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-013",

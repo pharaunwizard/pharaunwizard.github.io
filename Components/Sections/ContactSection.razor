@@ -1,0 +1,35 @@
+@inject ContentService Content
+
+<section class="section contacts" id="contacts" aria-labelledby="contacts-title">
+    <div class="container">
+        <h2 id="contacts-title" class="section__title">Контакты</h2>
+        @if (profile is null)
+        {
+            <div class="skeleton contacts__skeleton" aria-hidden="true"></div>
+        }
+        else if (profile.Contacts.Count == 0)
+        {
+            <p class="empty-state">Контакты пока не указаны.</p>
+        }
+        else
+        {
+            <ul class="contacts__list">
+                @foreach (var contact in profile.Contacts)
+                {
+                    <li class="contact">
+                        <a href="@contact.Url">@contact.Label</a>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</section>
+
+@code {
+    private Profile? profile;
+
+    protected override async Task OnInitializedAsync()
+    {
+        profile = await Content.GetProfileAsync();
+    }
+}

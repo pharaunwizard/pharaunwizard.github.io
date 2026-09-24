@@ -1,0 +1,33 @@
+@inject ContentService Content
+
+<section class="section about" id="about" aria-labelledby="about-title">
+    <div class="container">
+        <h2 id="about-title" class="section__title">Обо мне</h2>
+        @if (profile is null)
+        {
+            <div class="skeleton about__skeleton" aria-hidden="true"></div>
+        }
+        else if (profile.About.Count == 0)
+        {
+            <p class="empty-state">Информация о себе пока не заполнена.</p>
+        }
+        else
+        {
+            <div class="about__text">
+                @foreach (var paragraph in profile.About)
+                {
+                    <p>@paragraph</p>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private Profile? profile;
+
+    protected override async Task OnInitializedAsync()
+    {
+        profile = await Content.GetProfileAsync();
+    }
+}

@@ -1,0 +1,42 @@
+@inject ContentService Content
+
+<section class="section projects" id="projects" aria-labelledby="projects-title">
+    <div class="container">
+        <h2 id="projects-title" class="section__title">Пет-проекты</h2>
+        @if (items is null)
+        {
+            <div class="skeleton projects__skeleton" aria-hidden="true"></div>
+        }
+        else if (items.Count == 0)
+        {
+            <p class="empty-state">Проекты пока не добавлены.</p>
+        }
+        else
+        {
+            <div class="projects__grid">
+                @foreach (var project in items)
+                {
+                    <article class="project-card">
+                        <h3>@project.Title</h3>
+                        <p>@project.Description</p>
+                        <ul class="tech-list">
+                            @foreach (var tech in project.Technologies)
+                            {
+                                <li>@tech</li>
+                            }
+                        </ul>
+                    </article>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private List<Project>? items;
+
+    protected override async Task OnInitializedAsync()
+    {
+        items = await Content.GetProjectsAsync();
+    }
+}

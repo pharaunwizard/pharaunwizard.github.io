@@ -1,0 +1,42 @@
+@inject ContentService Content
+
+<section class="hero section" id="hero" aria-labelledby="hero-title">
+    <div class="container hero__inner">
+        @if (profile is null)
+        {
+            <div class="skeleton hero__skeleton" aria-hidden="true"></div>
+        }
+        else
+        {
+            <div class="hero__photo">
+                <img src="@profile.PhotoUrl" alt="@($"Фото — {profile.Name}")" width="320" height="400" />
+            </div>
+            <div class="hero__content">
+                <h1 id="hero-title" class="hero__name">@profile.Name</h1>
+                <p class="hero__role">@profile.Role</p>
+                <p class="hero__offer">@profile.Offer</p>
+                @if (hh is not null)
+                {
+                    <a class="btn btn--accent hero__cta" href="@hh.Url" target="_blank" rel="noopener noreferrer">
+                        Смотреть резюме на hh.ru
+                    </a>
+                }
+                <a class="hero__scroll" href="#about">
+                    Полный опыт ниже
+                    <span class="hero__scroll-arrow" aria-hidden="true">↓</span>
+                </a>
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private Profile? profile;
+    private ContactLink? hh;
+
+    protected override async Task OnInitializedAsync()
+    {
+        profile = await Content.GetProfileAsync();
+        hh = profile?.Contacts.FirstOrDefault(c => c.Type == "hh");
+    }
+}

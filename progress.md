@@ -76,3 +76,11 @@
 - `experience.json` → 3 записи;
 - `projects.json` → 4 проекта.
 Вывод: `DESERIALIZATION OK`. Плейсхолдер-фото: `wwwroot/img/profile.png`.
+
+## TASK-012 — Главная страница из секций — done
+
+- Созданы Razor-компоненты секций: `HeroSection`, `AboutSection`, `ExperienceSection`, `ProjectsSection`, `ContactSection` (`Components/Sections`).
+- `Pages/Home.razor` собирает их в порядке Hero → About → Experience → Projects → Contacts (PRD §3.1).
+- `Layout/MainLayout.razor` упрощён до вывода `@Body` (убрана шаблонная боковая навигация под одностраничник).
+- Все секции получают данные через `ContentService`.
+- Проверка: сборка без ошибок; headless-браузер (Chrome `--dump-dom`) подтвердил наличие всех пяти секций в правильном порядке с реальным контентом.
