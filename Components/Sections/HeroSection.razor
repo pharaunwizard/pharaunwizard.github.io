@@ -4,7 +4,7 @@
     <div class="hero__particles" aria-hidden="true">
         @foreach (var particle in Particles)
         {
-            <span class="hero__particle"
+            <span class="hero__particle hero__particle--@particle.Tint"
                   style="@($"--x:{particle.X}%;--y:{particle.Y}%;--s:{particle.Size}px;--dur:{particle.Duration}s;--delay:{particle.Delay}s;--dx1:{particle.Dx1}px;--dy1:{particle.Dy1}px;--dx2:{particle.Dx2}px;--dy2:{particle.Dy2}px;--dx3:{particle.Dx3}px;--dy3:{particle.Dy3}px")"></span>
         }
     </div>
@@ -42,18 +42,19 @@
 @code {
     private sealed record Particle(
         double X, double Y, double Size, double Duration, double Delay,
-        double Dx1, double Dy1, double Dx2, double Dy2, double Dx3, double Dy3);
+        double Dx1, double Dy1, double Dx2, double Dy2, double Dx3, double Dy3,
+        string Tint);
 
     private static readonly Particle[] Particles =
     {
-        new(6, 72, 5, 16, 0, 18, -22, 32, 6, 12, 24),
-        new(16, 28, 4, 20, 3, -14, -18, -24, 10, -6, 22),
-        new(28, 58, 7, 18, 6, 22, 14, 6, 30, -16, 12),
-        new(41, 18, 4, 22, 1, -20, 16, -8, 30, 10, 8),
-        new(55, 74, 6, 17, 8, 16, -24, -10, -30, -22, 4),
-        new(68, 36, 4, 21, 4, -18, -20, 8, -14, 20, 14),
-        new(80, 62, 7, 19, 9, 20, 18, 24, -8, 4, -26),
-        new(92, 24, 5, 23, 5, -16, 22, -26, 6, -10, -18)
+        new(6, 72, 5, 16, 0, 18, -22, 32, 6, 12, 24, "warm"),
+        new(16, 28, 4, 20, 3, -14, -18, -24, 10, -6, 22, "cool"),
+        new(28, 58, 7, 18, 6, 22, 14, 6, 30, -16, 12, "warm"),
+        new(41, 18, 4, 22, 1, -20, 16, -8, 30, 10, 8, "cool"),
+        new(55, 74, 6, 17, 8, 16, -24, -10, -30, -22, 4, "warm"),
+        new(68, 36, 4, 21, 4, -18, -20, 8, -14, 20, 14, "cool"),
+        new(80, 62, 7, 19, 9, 20, 18, 24, -8, 4, -26, "warm"),
+        new(92, 24, 5, 23, 5, -16, 22, -26, 6, -10, -18, "warm")
     };
 
     private Profile? profile;

@@ -562,14 +562,35 @@ button.contact__link {
     width: var(--s);
     height: var(--s);
     border-radius: 50%;
+    --p-core: rgba(255, 231, 196, 1);
+    --p-mid: rgba(236, 138, 66, 0.95);
+    --p-halo: rgba(143, 179, 217, 0.9);
+    --p-glow1: rgba(236, 138, 66, 0.85);
+    --p-glow2: rgba(143, 179, 217, 0.8);
     background:
-        radial-gradient(circle at 50% 50%, rgba(255, 231, 196, 1) 0%, rgba(233, 133, 64, 0.95) 42%, rgba(214, 110, 54, 0) 72%),
-        radial-gradient(circle at 50% 50%, rgba(150, 185, 235, 0.75) 0%, rgba(150, 185, 235, 0) 90%);
+        radial-gradient(circle at 50% 50%, var(--p-core) 0%, var(--p-mid) 40%, transparent 70%),
+        radial-gradient(circle at 50% 50%, var(--p-halo) 0%, transparent 92%);
     box-shadow:
-        0 0 6px rgba(233, 133, 64, 0.85),
-        0 0 16px rgba(150, 185, 235, 0.55);
+        0 0 6px var(--p-glow1),
+        0 0 16px var(--p-glow2);
     opacity: 0.85;
     animation: hero-dust var(--dur) ease-in-out var(--delay) infinite;
+}
+
+.hero__particle--warm {
+    --p-core: rgba(255, 231, 196, 1);
+    --p-mid: rgba(236, 138, 66, 0.95);
+    --p-halo: rgba(143, 179, 217, 0.9);
+    --p-glow1: rgba(236, 138, 66, 0.85);
+    --p-glow2: rgba(143, 179, 217, 0.8);
+}
+
+.hero__particle--cool {
+    --p-core: rgba(236, 244, 252, 1);
+    --p-mid: rgba(143, 179, 217, 0.95);
+    --p-halo: rgba(112, 145, 200, 0.85);
+    --p-glow1: rgba(159, 184, 214, 0.9);
+    --p-glow2: rgba(120, 155, 205, 0.8);
 }
 
 @keyframes hero-dust {
