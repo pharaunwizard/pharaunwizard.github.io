@@ -104,6 +104,17 @@ img {
     height: auto;
 }
 
+.bg-glow {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    background:
+        radial-gradient(600px 400px at 75% 12%, rgba(214, 110, 54, 0.24), transparent 60%),
+        radial-gradient(520px 420px at 12% 85%, rgba(150, 60, 30, 0.20), transparent 60%);
+}
+
 a {
     color: var(--color-sand);
     text-decoration: none;
