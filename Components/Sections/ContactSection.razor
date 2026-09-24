@@ -13,11 +13,18 @@
         }
         else
         {
+            <p class="contacts__intro">Открыт к предложениям и сотрудничеству. Свяжитесь удобным способом:</p>
             <ul class="contacts__list">
                 @foreach (var contact in profile.Contacts)
                 {
-                    <li class="contact">
-                        <a href="@contact.Url">@contact.Label</a>
+                    <li class="contact contact--@contact.Type">
+                        <a class="contact__link"
+                           href="@contact.Url"
+                           data-type="@contact.Type"
+                           target="@(IsExternal(contact) ? "_blank" : null)"
+                           rel="@(IsExternal(contact) ? "noopener noreferrer" : null)">
+                            <span class="contact__label">@contact.Label</span>
+                        </a>
                     </li>
                 }
             </ul>
@@ -32,4 +39,7 @@
     {
         profile = await Content.GetProfileAsync();
     }
+
+    private static bool IsExternal(ContactLink contact)
+        => !contact.Url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase);
 }

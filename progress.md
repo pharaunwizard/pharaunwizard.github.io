@@ -153,3 +153,11 @@
 - Ссылки рендерятся только при наличии URL, открываются в новой вкладке с `rel="noopener noreferrer"`; проект без ссылок (JsonConfig) отображается корректно.
 - Добавлен адаптивный grid `.projects__grid` (`repeat(auto-fill, minmax(280px, 1fr))`).
 - Проверка (CDP): 4 карточки, заголовки совпадают с `projects.json`, все 4 ссылки имеют `target=_blank` и `rel=noopener noreferrer`.
+
+## TASK-015 — Секция контактов — done
+
+- `ContactSection` выводит контакты из `profile.json`: Telegram (`https://t.me/...`), hh (`https://hh.ru/...`), email (`mailto:`).
+- Каждому контакту присвоен класс типа (`contact--telegram|hh|email`) и `data-type` — типы различаются.
+- Telegram/hh открываются в новой вкладке с `rel="noopener noreferrer"`; email — `mailto:` без `target`.
+- Добавлены базовые стили списка/кнопок контактов (иконки и hover — в TASK-026).
+- Проверка (CDP): 3 контакта, корректные href, `target`/`rel` только у внешних ссылок.
