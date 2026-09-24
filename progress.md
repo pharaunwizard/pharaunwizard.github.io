@@ -200,3 +200,10 @@
 - Добавлен `ContactIcon.razor` с inline-SVG для типов `telegram`, `hh`, `email` (+ fallback), цвет — акцентный, при hover — ярче.
 - Композиция контактов адаптивна: на ≤520px список становится колонкой, кнопки на всю ширину.
 - Проверка (CDP): 3 SVG-иконки (по одной на каждый тип контакта), на 360px переполнения нет.
+
+## TASK-027 — MarsBackground (пыль/атмосфера) — done
+
+- Создан `Components/MarsBackground.razor`, подключён в `Home.razor`.
+- Слой: fixed, `z-index: -1`, `pointer-events: none`, `aria-hidden` — не перекрывает контент и не ловит клики.
+- Атмосфера: радиальные свечения + 14 частиц пыли на чистом CSS (`transform`/`opacity`, `@keyframes dust-drift`), без библиотек и Canvas.
+- Проверка (CDP): 14 частиц, `z-index=-1`, `pointer-events=none`, консоль чистая; скриншот подтверждает, что контент читаем поверх фона.
