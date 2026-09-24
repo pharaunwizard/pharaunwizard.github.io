@@ -1,0 +1,26 @@
+[
+  {
+    "id": "backend-dotnet",
+    "title": "Backend / .NET",
+    "description": "Проектирование и разработка серверных систем: API, интеграции, работа с данными и нагрузкой.",
+    "items": ["C#", ".NET 10", "ASP.NET Core", "EF Core", "gRPC", "REST", "PostgreSQL", "SQL Server", "Redis", "Kafka", "RabbitMQ", "xUnit"]
+  },
+  {
+    "id": "android",
+    "title": "Android",
+    "description": "Нативная мобильная разработка и поддержка клиентских приложений.",
+    "items": ["Kotlin", "Java", "Android SDK", "Jetpack Compose", "Coroutines / Flow", "Retrofit", "Room", "Hilt", "Gradle"]
+  },
+  {
+    "id": "ai",
+    "title": "AI / ML",
+    "description": "Практическое применение ИИ: интеграция моделей, LLM-пайплайны и классический ML.",
+    "items": ["Python", "PyTorch", "scikit-learn", "LLM APIs", "RAG", "Prompt Engineering", "ONNX", "ML.NET"]
+  },
+  {
+    "id": "devops",
+    "title": "DevOps / Tooling",
+    "description": "Автоматизация сборки, доставки и эксплуатации сервисов.",
+    "items": ["Git", "GitHub Actions", "Docker", "Kubernetes", "Linux", "CI/CD", "Prometheus", "Grafana"]
+  }
+]

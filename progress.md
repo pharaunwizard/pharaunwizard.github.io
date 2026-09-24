@@ -284,3 +284,9 @@
 - Причина: CTA и подсказка были inline-flex соседями и вставали в одну строку вплотную.
 - Исправление: оба элемента обёрнуты в `.hero__actions` (`display:flex; flex-direction:column; align-items:flex-start; gap: var(--space-5)`); на ≤720px `align-items:center`.
 - Проверка (CDP, bounding boxes): при 1024/1440/360 `intersect=false`, отступ между элементами 24px, горизонтального переполнения нет.
+
+## TASK-041 — Модель SkillGroup и skills.json — done
+
+- Создана модель `Models/SkillGroup.cs`: `Id`, `Title`, `Description`, `Items` (List<string>).
+- Создан `wwwroot/content/skills.json` — 4 группы (Backend / .NET, Android, AI / ML, DevOps / Tooling); включая Android и AI.
+- Проверка: `dotnet build` без ошибок; JSON валиден; десериализация в `List<SkillGroup>` подтверждена тестовым прогоном (4 группы, наполнены Items).

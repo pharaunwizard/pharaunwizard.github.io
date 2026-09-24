@@ -761,7 +761,7 @@
         "Шаг 3: ожидаемый результат — модель компилируется, JSON валиден"
       ],
       "dependencies": ["TASK-007"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-042",
