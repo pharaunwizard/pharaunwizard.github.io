@@ -551,3 +551,11 @@
 - CSS: `.contact__link--static` (курсор по умолчанию, нейтрализован hover), `.contact__value` (адрес обычным текстом, выделяется/копируется).
 - Проверка (CDP, dev и published): email-контакт — `SPAN` (не `A`/`BUTTON`), текст «Email pharaunwizard@gmail.com», `href` отсутствует; `openMailto === undefined`, `[data-mail]` нет; Telegram/hh — `A`; переполнения нет; `CONSOLE_ENTRIES: 0`.
 - Задача удалена из `tasks.json` (по обновлённым инструкциям), история — в git.
+
+## TASK-085 — Формат и цвет Email — done
+
+- Email выводится как «Email: pharaunwizard@gmail.com» — подпись с двоеточием (`@contact.Label:`) и адрес на той же строке.
+- Цвет текста email (подпись + адрес) приведён к цвету `.contacts__intro`: `.contact__link--static { color: var(--color-text-muted); }`, `.contact__value { color: inherit; }`, hover нейтрализован.
+- Email остаётся неинтерактивным (`SPAN`, без `<a>`/`<button>`), адрес выделяется/копируется; Telegram/hh — ссылки.
+- Проверка (CDP, dev и published): `combined = "Email: pharaunwizard@gmail.com"`; `introColor = labelColor = valueColor = rgb(200,168,148)`; email `SPAN`, Telegram/hh `A`; переполнения нет; `CONSOLE_ENTRIES: 0`.
+- Задача удалена из `tasks.json` (история — в git).

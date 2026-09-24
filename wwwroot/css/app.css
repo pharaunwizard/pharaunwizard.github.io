@@ -582,11 +582,12 @@ button.contact__link {
 
 .contact__link--static {
     cursor: default;
+    color: var(--color-text-muted);
 }
 
 .contact__link--static:hover {
     border-color: var(--color-border-strong);
-    color: var(--color-sand);
+    color: var(--color-text-muted);
 }
 
 .contact__link--static:hover .contact__icon {
@@ -594,7 +595,7 @@ button.contact__link {
 }
 
 .contact__value {
-    color: var(--color-text);
+    color: inherit;
     font-weight: 400;
     user-select: text;
 }
