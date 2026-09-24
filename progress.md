@@ -345,3 +345,8 @@
 - Конвертация ffmpeg/libwebp: `scale=640:800:force_original_aspect_ratio=increase,crop=640:800` → `wwwroot/img/profile.webp`.
 - Результат: 640×800, **41 КБ** (≤150 КБ). `profile.json.photoUrl` = `/img/profile.webp` — не менялся.
 - Проверка: `ffprobe` подтверждает 640×800; файл на месте в `wwwroot/img`.
+
+## TASK-048 — Hero: кнопка hh и «Подробнее» в одну строку — done
+
+- Отменён ошибочный `flex-direction: column` (из TASK-038): `.hero__actions` снова `row`, `align-items: center`, `gap: var(--space-4)`; на ≤720px `gap: var(--space-3)` и уменьшенный padding кнопки.
+- Проверка (CDP, bounding boxes): при 1024/1440/360 `sameRow=true`, зазор по X = 16px (десктоп) / 12px (мобайл), хинт не под кнопкой, горизонтального скролла нет.
