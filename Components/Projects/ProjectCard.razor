@@ -1,7 +1,7 @@
 <article class="project-card">
     @if (!string.IsNullOrWhiteSpace(Item.ImageUrl))
     {
-        <img class="project-card__image" src="@Item.ImageUrl" alt="@($"Превью проекта {Item.Title}")" loading="lazy" />
+        <img class="project-card__image" src="@Item.ImageUrl" alt="@($"Превью проекта {Item.Title}")" loading="lazy" decoding="async" />
     }
 
     <h3 class="project-card__title">@Item.Title</h3>

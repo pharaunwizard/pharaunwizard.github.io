@@ -576,7 +576,7 @@
         "Шаг 3: ожидаемый результат — изображения лёгкие, lazy-loading применён"
       ],
       "dependencies": ["TASK-022", "TASK-025"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-032",

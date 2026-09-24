@@ -227,3 +227,10 @@
 - Проверка (CDP, эмуляция ширин): при 360/768/1024/1440 `scrollWidth == innerWidth`, документ не имеет горизонтального переполнения.
 - Единственный выходящий за viewport элемент — `.mars-bg__glow` (декоративный слой внутри `.mars-bg` с `overflow:hidden`) — на overflow страницы не влияет.
 - CTA hh видна на всех ширинах; карточки проектов перестраиваются (1/2/3 колонки), таймлайн и контакты адаптируются.
+
+## TASK-031 — Оптимизация изображений — done
+
+- Портретное фото сконвертировано в WebP (ffmpeg/libwebp, quality 80): `img/profile.png` (13.5 КБ) → `img/profile.webp` (5.8 КБ, 640×800); PNG удалён, `profile.json.photoUrl` обновлён на `/img/profile.webp`.
+- Hero-изображение: `decoding="async"`, `fetchpriority="high"` (LCP), вес 5.8 КБ ≪ 150 КБ.
+- Изображения проектов используют `loading="lazy" decoding="async"`.
+- Проверка (CDP): `profile.webp` загружен (640×800, `complete && naturalWidth>0`), единственный запрошенный образ — `profile.webp`, консоль чистая.

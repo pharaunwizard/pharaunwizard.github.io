@@ -9,7 +9,7 @@
         else
         {
             <div class="hero__photo">
-                <img src="@profile.PhotoUrl" alt="@($"Фото — {profile.Name}")" width="320" height="400" />
+                <img src="@profile.PhotoUrl" alt="@($"Фото — {profile.Name}")" width="320" height="400" decoding="async" fetchpriority="high" />
             </div>
             <div class="hero__content">
                 <h1 id="hero-title" class="hero__name">@profile.Name</h1>
