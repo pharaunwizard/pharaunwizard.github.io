@@ -234,3 +234,11 @@
 - Hero-изображение: `decoding="async"`, `fetchpriority="high"` (LCP), вес 5.8 КБ ≪ 150 КБ.
 - Изображения проектов используют `loading="lazy" decoding="async"`.
 - Проверка (CDP): `profile.webp` загружен (640×800, `complete && naturalWidth>0`), единственный запрошенный образ — `profile.webp`, консоль чистая.
+
+## TASK-033 — Общая доступность — done
+
+- Семантика: `lang="ru"`; один `h1` (имя в Hero), по `h2` в секциях About/Experience/Projects/Contacts; каждая секция связана с заголовком через `aria-labelledby`.
+- Изображения: у hero-фото осмысленный `alt` («Фото — Иван Марсов»); изображения проектов имеют `alt` (при наличии).
+- Контраст (WCAG AA, расчёт): text/bg 15.88, muted/bg 8.65, muted/surface 7.96, dim/surface 4.84, accent/bg 5.6, sand/bg 11.19, кнопка 5.53 — все ≥ 4.5:1.
+- Фокус: глобальный `:focus-visible` (3px контур) на интерактивных элементах (кнопки таймлайна, ссылки, контакты).
+- Проверка (CDP DOM-аудит): `h1Count=1`, `h2Count=4`, `alt` заполнен, `aria-labelledby` корректен.
