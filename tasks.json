@@ -380,7 +380,7 @@
         "Шаг 3: ожидаемый результат — секреты отсутствуют"
       ],
       "dependencies": ["TASK-001"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-021",
