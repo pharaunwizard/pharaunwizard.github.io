@@ -1,5 +1,4 @@
 @inject ContentService Content
-@inject IJSRuntime JS
 
 <section class="section contacts" id="contacts" aria-labelledby="contacts-title">
     <div class="container">
@@ -21,10 +20,10 @@
                     <li class="contact contact--@contact.Type">
                         @if (IsEmail(contact))
                         {
-                            <button class="contact__link" type="button" data-type="@contact.Type" @onclick="() => OpenEmailAsync(contact)">
+                            <a class="contact__link" href="#" data-type="@contact.Type" data-mail="@MailData(contact)">
                                 <ContactIcon Type="@contact.Type" />
                                 <span class="contact__label">@contact.Label</span>
-                            </button>
+                            </a>
                         }
                         else
                         {
@@ -52,20 +51,14 @@
         => contact.Type.Equals("email", StringComparison.OrdinalIgnoreCase)
            || contact.Url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase);
 
-    private async Task OpenEmailAsync(ContactLink contact)
+    // Адрес кодируется (base64), чтобы не хранить email открытым текстом в DOM;
+    // декодирование и запуск mailto происходят синхронно в обработчике клика (app.js).
+    private static string MailData(ContactLink contact)
     {
         var address = contact.Url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase)
             ? contact.Url["mailto:".Length..]
             : contact.Url;
 
-        var at = address.IndexOf('@');
-        if (at <= 0)
-        {
-            return;
-        }
-
-        var local = address[..at];
-        var domain = address[(at + 1)..];
-        await JS.InvokeVoidAsync("marsCv.openMailto", local, domain);
+        return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(address));
     }
 }

@@ -514,3 +514,10 @@
 - Удалён `<span class="exp-card__badge">Текущее</span>` из `ExperienceItemCard.razor`; текст «Текущее» отсутствует в разметке/DOM.
 - Визуальное выделение сохранено через класс `exp-card--latest` (акцентная рамка + светящийся маркер); выделена ровно одна (верхняя) запись.
 - Проверка (CDP, 360/1024/1440): `badgeText=false`, `.exp-card__badge`=0, `.exp-card--latest`=1 («Nova Fintech»), открыта одна карточка, 3 записи; переполнения нет; `CONSOLE_ENTRIES: 0`.
+
+## TASK-075 — Надёжное открытие Email (mailto) — done
+
+- Причина: `mailto` запускался через асинхронный Blazor JS-interop → вне стека пользовательского жеста, браузер игнорировал внешний протокол.
+- Решение: email рендерится как нативный `<a class="contact__link" href="#" data-mail="<base64>">` (адрес обфусцирован через base64, без `mailto:`/открытого адреса в DOM). Внешний `app.js` вешает делегированный `click`-обработчик, который **синхронно** в рамках жеста декодирует адрес и выполняет `window.location.href = 'mailto:' + address`, с `preventDefault()` и `try/catch` (если почтовый клиент не настроен — интерфейс не ломается).
+- Проверка (CDP): клик по email вызывает `marsCv.openMailto` с корректным адресом (`pharaunwizard@gmail.com`), `location.hash` не меняется (preventDefault), в DOM нет ни открытого email, ни строки `mailto:`; Telegram/hh работают; CSP/консоль без ошибок.
+- Проверено в **Chrome** и **Edge**; Firefox в текущем окружении не установлен (использован стандартный нативный паттерн, совместимый с Firefox).

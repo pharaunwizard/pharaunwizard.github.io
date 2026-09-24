@@ -1,8 +1,22 @@
 window.marsCv = window.marsCv || {};
 
-window.marsCv.openMailto = function (local, domain) {
-    window.location.href = 'mailto:' + local + '@' + domain;
+window.marsCv.openMailto = function (address) {
+    window.location.href = 'mailto:' + address;
 };
+
+document.addEventListener('click', function (event) {
+    var link = event.target && event.target.closest ? event.target.closest('a[data-mail]') : null;
+    if (!link) {
+        return;
+    }
+    event.preventDefault();
+    try {
+        var address = atob(link.getAttribute('data-mail'));
+        window.marsCv.openMailto(address);
+    } catch (err) {
+        // почтовый клиент может быть не настроен — интерфейс не ломается
+    }
+});
 
 window.marsCv.appReady = function (photoSelector) {
     var done = function () {
