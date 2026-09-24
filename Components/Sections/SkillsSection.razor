@@ -1,0 +1,48 @@
+@inject ContentService Content
+
+<section class="section skills" id="skills" aria-labelledby="skills-title">
+    <div class="container">
+        <h2 id="skills-title" class="section__title">Навыки</h2>
+        @if (groups is null)
+        {
+            <div class="skeleton skills__skeleton" aria-hidden="true"></div>
+        }
+        else if (groups.Count == 0)
+        {
+            <p class="empty-state">Навыки пока не добавлены.</p>
+        }
+        else
+        {
+            <div class="skills__grid">
+                @foreach (var group in groups)
+                {
+                    <article class="skill-group">
+                        <h3 class="skill-group__title">@group.Title</h3>
+                        @if (!string.IsNullOrWhiteSpace(group.Description))
+                        {
+                            <p class="skill-group__description">@group.Description</p>
+                        }
+                        @if (group.Items.Count > 0)
+                        {
+                            <ul class="tech-list">
+                                @foreach (var item in group.Items)
+                                {
+                                    <li>@item</li>
+                                }
+                            </ul>
+                        }
+                    </article>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private List<SkillGroup>? groups;
+
+    protected override async Task OnInitializedAsync()
+    {
+        groups = await Content.GetSkillsAsync();
+    }
+}

@@ -290,3 +290,24 @@
 - Создана модель `Models/SkillGroup.cs`: `Id`, `Title`, `Description`, `Items` (List<string>).
 - Создан `wwwroot/content/skills.json` — 4 группы (Backend / .NET, Android, AI / ML, DevOps / Tooling); включая Android и AI.
 - Проверка: `dotnet build` без ошибок; JSON валиден; десериализация в `List<SkillGroup>` подтверждена тестовым прогоном (4 группы, наполнены Items).
+
+## TASK-042 — ContentService загружает skills.json — done
+
+- Добавлено поле `_skillsTask` и метод `GetSkillsAsync()` (кэширование по тому же паттерну `??=`), загрузка `content/skills.json` в `List<SkillGroup>`.
+- Проверка (CDP, `performance.getEntriesByType('resource')`): среди `/content/*` запрошены `profile.json`, `skills.json`, `projects.json`, `experience.json` — `skills.json` ровно один раз.
+
+## TASK-043 — SkillsSection — done
+
+- Создан `Components/Sections/SkillsSection.razor`: рендерит группы из `skills.json` (Title, Description, список Items), получает данные через `ContentService`.
+- Пустое состояние: `.empty-state` при отсутствии групп.
+- Проверка (CDP): 4 группы, у каждой заголовок/описание/навыки; при временном `skills.json = []` — аккуратное пустое состояние, приложение не падает.
+
+## TASK-044 — Skills между Experience и Projects — done
+
+- `SkillsSection` вставлен в `Home.razor` между `ExperienceSection` и `ProjectsSection`.
+- Проверка (CDP): порядок секций `hero → about → experience → skills → projects → contacts`.
+
+## TASK-045 — Оформление и адаптивность Skills — done
+
+- Стили `.skills__grid` / `.skill-group` (карточки с заголовком-акцентом, описанием и чипами навыков), в едином Mars-стиле, hover-подъём.
+- Проверка (CDP, `gridTemplateColumns`): 360→1, 768→2, 1024→3, 1440→3; горизонтального скролла нет.

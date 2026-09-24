@@ -10,6 +10,7 @@ public class ContentService
     private Task<Profile?>? _profileTask;
     private Task<List<ExperienceItem>>? _experienceTask;
     private Task<List<Project>>? _projectsTask;
+    private Task<List<SkillGroup>>? _skillsTask;
 
     public ContentService(HttpClient http)
     {
@@ -24,6 +25,9 @@ public class ContentService
 
     public Task<List<Project>> GetProjectsAsync()
         => _projectsTask ??= LoadListAsync<Project>("content/projects.json");
+
+    public Task<List<SkillGroup>> GetSkillsAsync()
+        => _skillsTask ??= LoadListAsync<SkillGroup>("content/skills.json");
 
     private async Task<T?> LoadAsync<T>(string path) where T : class
     {

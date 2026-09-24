@@ -779,7 +779,7 @@
         "Шаг 3: ожидаемый результат — данные загружены и закэшированы"
       ],
       "dependencies": ["TASK-008", "TASK-041"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-043",
@@ -798,7 +798,7 @@
         "Шаг 3: ожидаемый результат — все группы отображаются корректно"
       ],
       "dependencies": ["TASK-042"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-044",
@@ -816,7 +816,7 @@
         "Шаг 3: ожидаемый результат — Skills между опытом и проектами"
       ],
       "dependencies": ["TASK-043", "TASK-012"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-045",
@@ -835,7 +835,7 @@
         "Шаг 3: ожидаемый результат — адаптивная, единообразная секция"
       ],
       "dependencies": ["TASK-043", "TASK-021"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-046",
