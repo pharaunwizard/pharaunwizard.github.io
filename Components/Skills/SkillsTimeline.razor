@@ -1,0 +1,40 @@
+@inject ContentService Content
+
+@if (groups is null)
+{
+    <div class="skeleton timeline__skeleton" aria-hidden="true"></div>
+}
+else if (groups.Count == 0)
+{
+    <p class="empty-state">Навыки пока не добавлены.</p>
+}
+else
+{
+    <ol class="timeline">
+        @foreach (var group in groups)
+        {
+            <li class="timeline__entry">
+                <SkillGroupCard Group="group"
+                                IsOpen="@(group.Id == openId)"
+                                IsFirst="@(group.Id == groups[0].Id)"
+                                OnToggle="Toggle" />
+            </li>
+        }
+    </ol>
+}
+
+@code {
+    private List<SkillGroup>? groups;
+    private string? openId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        groups = await Content.GetSkillsAsync();
+        openId = groups.FirstOrDefault()?.Id;
+    }
+
+    private void Toggle(string id)
+    {
+        openId = openId == id ? null : id;
+    }
+}

@@ -937,7 +937,7 @@
         "Шаг 6: ожидаемый результат — Skills ведёт себя в точности как таймлайн опыта"
       ],
       "dependencies": ["TASK-043", "TASK-045", "TASK-021"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-051",

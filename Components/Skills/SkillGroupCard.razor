@@ -1,0 +1,61 @@
+<article class="exp-card @(IsOpen ? "exp-card--open" : "") @(IsFirst ? "exp-card--latest" : "")">
+    <button type="button"
+            class="exp-card__header"
+            aria-expanded="@IsOpen.ToString().ToLowerInvariant()"
+            aria-controls="@PanelId"
+            @onclick="HandleToggle">
+        <span class="exp-card__marker" aria-hidden="true"></span>
+        <span class="exp-card__headings">
+            <span class="exp-card__company" id="@TitleId">@Group.Title</span>
+            @if (Group.Items.Count > 0)
+            {
+                <span class="exp-card__period">@Group.Items.Count навыков</span>
+            }
+        </span>
+        @if (IsFirst)
+        {
+            <span class="exp-card__badge">Основное</span>
+        }
+        <span class="exp-card__chevron" aria-hidden="true">▾</span>
+    </button>
+
+    <div id="@PanelId" class="exp-card__panel" role="region" aria-labelledby="@TitleId" aria-hidden="@(!IsOpen)">
+        <div class="exp-card__panel-inner">
+            <div class="exp-card__panel-body">
+                @if (!string.IsNullOrWhiteSpace(Group.Description))
+                {
+                    <p class="skill-group__description">@Group.Description</p>
+                }
+                @if (Group.Items.Count > 0)
+                {
+                    <ul class="tech-list">
+                        @foreach (var item in Group.Items)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</article>
+
+@code {
+    [Parameter, EditorRequired]
+    public SkillGroup Group { get; set; } = default!;
+
+    [Parameter]
+    public bool IsOpen { get; set; }
+
+    [Parameter]
+    public bool IsFirst { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnToggle { get; set; }
+
+    private string PanelId => $"skill-panel-{Group.Id}";
+
+    private string TitleId => $"skill-title-{Group.Id}";
+
+    private Task HandleToggle() => OnToggle.InvokeAsync(Group.Id);
+}
