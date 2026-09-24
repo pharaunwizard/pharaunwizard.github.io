@@ -1,0 +1,29 @@
+@inject ContentService Content
+@inject IJSRuntime JS
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        try
+        {
+            await Task.WhenAll(
+                Content.GetProfileAsync(),
+                Content.GetExperienceAsync(),
+                Content.GetProjectsAsync(),
+                Content.GetSkillsAsync());
+
+            await JS.InvokeVoidAsync("marsCv.appReady", ".hero__photo img");
+        }
+        catch (JSDisconnectedException)
+        {
+        }
+        catch (InvalidOperationException)
+        {
+        }
+    }
+}
