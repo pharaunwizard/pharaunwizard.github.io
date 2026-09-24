@@ -469,7 +469,7 @@
         "Шаг 3: ожидаемый результат — сетка адаптивна и выровнена"
       ],
       "dependencies": ["TASK-014", "TASK-021"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-026",

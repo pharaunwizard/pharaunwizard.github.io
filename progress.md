@@ -189,3 +189,8 @@
 - Чтобы строгий `script-src` не давал ошибок из-за inline-скриптов Blazor, отключён фингерпринтинг (`OverrideHtmlAssetPlaceholders=false`), удалён inline importmap и пустой `<link rel="preload" id="webassembly">`; загрузчик подключён как `_framework/blazor.webassembly.js`.
 - Внешние ссылки (Hero hh, контакты Telegram/hh, ссылки проектов) — с `target="_blank"` и `rel="noopener noreferrer"`.
 - Проверка (CDP, dev и published): приложение рендерит 5 секций, `CONSOLE_ENTRIES: 0` (нет CSP-ошибок); в опубликованном `index.html` 0 inline-скриптов; все 7 внешних ссылок `allSafe=true`.
+
+## TASK-025 — Адаптивная сетка пет-проектов — done
+
+- Сетка `.projects__grid`: `repeat(auto-fill, minmax(280px, 1fr))`; карточки содержат название, описание, технологии, ссылки; стиль согласован с темой (фон, рамки, hover-подъём).
+- Проверка (CDP, число колонок по `gridTemplateColumns`): 360px → 1, 768px → 2, 1024px → 3, 1440px → 3; горизонтального скролла нет.
