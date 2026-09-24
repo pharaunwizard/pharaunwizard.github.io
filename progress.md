@@ -34,3 +34,13 @@
 - Добавлены `twitter:card` (`summary_large_image`), `twitter:title`, `twitter:description`, `twitter:image`.
 - Сгенерировано изображение-превью `wwwroot/img/og-preview.png` размером ровно 1200×630.
 - `og:url`/`og:image` указывают на публичный домен-плейсхолдер (уточняется на TASK-006/036).
+
+## TASK-007 — C#-модели данных — done
+
+Созданы модели (`MarsCV.Models`):
+- `Profile`: Name, Role, Offer, PhotoUrl, About, Contacts.
+- `ContactLink`: Type, Label, Url, Icon.
+- `ExperienceItem`: Id, Company, Role, StartDate, EndDate, Location, Summary, Details, Achievements, Technologies.
+- `Project`: Id, Title, Description, Technologies, RepoUrl, DemoUrl, ImageUrl.
+
+Соответствует PRD §5.1–5.3. `dotnet build` — 0 ошибок.
