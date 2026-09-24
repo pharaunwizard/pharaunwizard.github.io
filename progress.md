@@ -401,3 +401,23 @@
 - Hero-фото: `preload as="image" fetchpriority=high` в `index.html`; размеры/`aspect-ratio` зарезервированы. Наблюдатель за `#blazor-error-ui` скрывает загрузчик и показывает ошибку.
 - reduced-motion: анимации полосы/перехода отключены глобально, индикация сохраняется.
 - Проверка (CDP, dev и published, 390×844, throttle + CPU×4): t0–t3 прогресс/скелет видимы, bar ~92% (359/390), при этом контент уже отрисован; t12 `app-loaded=true`, бар и скелет скрыты; **CLS 0.042** (≤0.1); preload-ссылка присутствует; `CONSOLE_ENTRIES: 0`. Reduced-motion: загрузчик корректно скрывается.
+
+## TASK-057 — Удаление MarsBackground — done
+
+- Удалён `Components/MarsBackground.razor`; убрано подключение из `Home.razor`.
+- Удалены CSS-правила `.mars-bg`, `.mars-bg__glow`, `.mars-bg__dust`, `.mars-bg__particle`, `@keyframes dust-drift` и reduced-motion-правило для них.
+- Марсианская палитра сохраняется за счёт body-градиентов.
+- Проверка: в приложении нет ссылок на `MarsBackground`/`mars-bg`; в DOM `.mars-bg` = 0; все секции рендерятся; консоль чистая.
+
+## TASK-058 — Оранжевые частицы в фоне Hero — done
+
+- В `HeroSection` добавлен слой `.hero__particles` (8 частиц, оранжевый `var(--color-accent)`, размеры 2–4px, медленный дрейф `@keyframes hero-dust`).
+- Слой: `position: absolute` внутри `.hero`, `overflow:hidden`, `pointer-events:none`, `aria-hidden`; `.hero { position:relative; overflow:hidden }`, контент `.hero__inner { z-index:1 }`.
+- Без свечения (`box-shadow: none`) и с низкой непрозрачностью (пик 0.5).
+- Проверка (CDP, 360/1024/1440): 8 частиц в Hero, 0 частиц вне Hero, цвет `rgb(214,110,54)`, `box-shadow: none`, переполнения нет; при reduced-motion анимация `none`, opacity 0.35 (статично).
+
+## TASK-059 — PRD без MarsBackground + регресс — done
+
+- PRD: §3.7 переписан (фон = body-градиенты + частицы в Hero, без отдельного компонента/изображений/параллакса); убраны упоминания NASA-снимка; §5.6 — строка `MarsBackground.razor` заменена на разметку частиц внутри `HeroSection.razor`.
+- Проверка: в `PRD.md` нет `MarsBackground`/`параллакс`/`снимок`.
+- Регресс (CDP, 360/1024/1440): порядок секций, опыт 3, Skills 4, проекты 4, контакты 3, `.mars-bg`=0, частицы только в Hero; `CONSOLE_ENTRIES: 0`.

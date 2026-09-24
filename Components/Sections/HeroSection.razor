@@ -1,6 +1,13 @@
 @inject ContentService Content
 
 <section class="hero section" id="hero" aria-labelledby="hero-title">
+    <div class="hero__particles" aria-hidden="true">
+        @foreach (var particle in Particles)
+        {
+            <span class="hero__particle"
+                  style="@($"--x:{particle.X}%;--y:{particle.Y}%;--s:{particle.Size}px;--dur:{particle.Duration}s;--delay:{particle.Delay}s")"></span>
+        }
+    </div>
     <div class="container hero__inner">
         @if (profile is null)
         {
@@ -33,6 +40,20 @@
 </section>
 
 @code {
+    private sealed record Particle(double X, double Y, double Size, double Duration, double Delay);
+
+    private static readonly Particle[] Particles =
+    {
+        new(6, 72, 3, 15, 0),
+        new(16, 28, 2, 19, 3),
+        new(28, 58, 4, 17, 6),
+        new(41, 18, 2, 21, 1),
+        new(55, 74, 3, 16, 8),
+        new(68, 36, 2, 20, 4),
+        new(80, 62, 4, 18, 9),
+        new(92, 24, 2, 22, 5)
+    };
+
     private Profile? profile;
     private ContactLink? hh;
 
