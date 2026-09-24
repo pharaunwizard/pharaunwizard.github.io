@@ -182,3 +182,10 @@
 - Telegram/hh остались обычными `<a>` и не затронуты.
 - Проверка (CDP): статический `index.html` не содержит `ivan.marsov@example.com`/`mailto:`; живой DOM также не содержит адрес; клик по кнопке email вызывает `openMailto` с `ivan.marsov@example.com`.
 - Примечание: адрес остаётся в `profile.json` (данные, не HTML) — согласно схеме §5.1 (`mailto:`).
+
+## TASK-019 — CSP и харденинг внешних ссылок — done
+
+- В `index.html` добавлена meta CSP: `default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'`.
+- Чтобы строгий `script-src` не давал ошибок из-за inline-скриптов Blazor, отключён фингерпринтинг (`OverrideHtmlAssetPlaceholders=false`), удалён inline importmap и пустой `<link rel="preload" id="webassembly">`; загрузчик подключён как `_framework/blazor.webassembly.js`.
+- Внешние ссылки (Hero hh, контакты Telegram/hh, ссылки проектов) — с `target="_blank"` и `rel="noopener noreferrer"`.
+- Проверка (CDP, dev и published): приложение рендерит 5 секций, `CONSOLE_ENTRIES: 0` (нет CSP-ошибок); в опубликованном `index.html` 0 inline-скриптов; все 7 внешних ссылок `allSafe=true`.
