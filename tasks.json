@@ -73,7 +73,7 @@
         "Шаг 3: ожидаемый результат — lang=ru, title, description и viewport присутствуют в статическом HTML"
       ],
       "dependencies": ["TASK-001"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-004",
@@ -91,7 +91,7 @@
         "Шаг 3: ожидаемый результат — все теги присутствуют и указывают на существующий файл превью"
       ],
       "dependencies": ["TASK-003"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-005",
