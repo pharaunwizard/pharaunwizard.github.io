@@ -207,3 +207,10 @@
 - Слой: fixed, `z-index: -1`, `pointer-events: none`, `aria-hidden` — не перекрывает контент и не ловит клики.
 - Атмосфера: радиальные свечения + 14 частиц пыли на чистом CSS (`transform`/`opacity`, `@keyframes dust-drift`), без библиотек и Canvas.
 - Проверка (CDP): 14 частиц, `z-index=-1`, `pointer-events=none`, консоль чистая; скриншот подтверждает, что контент читаем поверх фона.
+
+## TASK-028 — Анимации появления при скролле — done
+
+- `wwwroot/js/app.js`: `marsCv.initReveal()` через `IntersectionObserver` помечает `.section:not(.hero)` классом `reveal` и снимает по попаданию в viewport (`is-visible`), после чего `unobserve`.
+- `Components/ScrollReveal.razor` вызывает инициализацию после первого рендера (JS-interop с обработкой отключения).
+- CSS: `.reveal` использует только `opacity` + `translateY` и `transition`; при отсутствии JS/reduced-motion контент виден (класс вешает JS).
+- Проверка (CDP): до скролла 4 секции `.reveal`, 0 видимых; после прокрутки вниз — 4 `is-visible` из 5 секций (hero исключён), консоль чистая.
