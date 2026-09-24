@@ -370,6 +370,32 @@ a:hover {
 }
 
 /* ============================================================
+   Обо мне
+   ============================================================ */
+
+.about {
+    background: var(--color-bg-soft);
+    border-block: 1px solid var(--color-border);
+}
+
+.about__text {
+    max-width: 72ch;
+}
+
+.about__text p {
+    color: var(--color-text-muted);
+}
+
+.about__text p:first-child {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: var(--color-text);
+}
+
+.about__text p:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================================
    Таймлайн опыта
    ============================================================ */
 

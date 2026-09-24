@@ -109,3 +109,9 @@
 - Добавлено глобальное `img { max-width: 100%; height: auto; }`.
 - Проверка через Chrome DevTools Protocol (эмуляция 360×800): `scrollWidth = innerWidth = 360`, переполнений нет; скриншот подтверждает корректную одноколоночную вёрстку.
 - Инструменты верификации: `serve-start.ps1`, `serve-stop.ps1`, `cdp.ps1` (эмуляция устройства + `Runtime.evaluate` + `Page.captureScreenshot`).
+
+## TASK-023 — Блок «Обо мне» — done
+
+- Оформлен блок: фон `--color-bg-soft` с разделителями, ограничение длины строки (`max-width: 72ch`), первый абзац-лид крупнее.
+- Отображаются 3 абзаца из `profile.json` (`about`).
+- Проверка (эмуляция 360×800): 3 абзаца, `scrollWidth = innerWidth = 360` — горизонтального скролла нет.
