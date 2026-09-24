@@ -17,14 +17,23 @@
             <ul class="contacts__list">
                 @foreach (var contact in profile.Contacts)
                 {
-                    var external = !contact.Url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase);
+                    var isEmail = contact.Type.Equals("email", StringComparison.OrdinalIgnoreCase);
                     <li class="contact contact--@contact.Type">
-                        <a class="contact__link" href="@contact.Url" data-type="@contact.Type"
-                           target="@(external ? "_blank" : null)"
-                           rel="@(external ? "noopener noreferrer" : null)">
-                            <ContactIcon Type="@contact.Type" />
-                            <span class="contact__label">@contact.Label</span>
-                        </a>
+                        @if (isEmail)
+                        {
+                            <span class="contact__link contact__link--static" data-type="@contact.Type">
+                                <ContactIcon Type="@contact.Type" />
+                                <span class="contact__label">@contact.Label</span>
+                                <span class="contact__value">@EmailAddress(contact)</span>
+                            </span>
+                        }
+                        else
+                        {
+                            <a class="contact__link" href="@contact.Url" data-type="@contact.Type" target="_blank" rel="noopener noreferrer">
+                                <ContactIcon Type="@contact.Type" />
+                                <span class="contact__label">@contact.Label</span>
+                            </a>
+                        }
                     </li>
                 }
             </ul>
@@ -39,4 +48,9 @@
     {
         profile = await Content.GetProfileAsync();
     }
+
+    private static string EmailAddress(ContactLink contact)
+        => contact.Url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase)
+            ? contact.Url["mailto:".Length..]
+            : contact.Url;
 }

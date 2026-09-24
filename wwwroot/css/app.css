@@ -580,6 +580,25 @@ button.contact__link {
     cursor: pointer;
 }
 
+.contact__link--static {
+    cursor: default;
+}
+
+.contact__link--static:hover {
+    border-color: var(--color-border-strong);
+    color: var(--color-sand);
+}
+
+.contact__link--static:hover .contact__icon {
+    color: var(--color-accent);
+}
+
+.contact__value {
+    color: var(--color-text);
+    font-weight: 400;
+    user-select: text;
+}
+
 .contact__icon {
     display: inline-flex;
     width: 1.25rem;

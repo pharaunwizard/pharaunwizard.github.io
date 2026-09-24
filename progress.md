@@ -543,3 +543,11 @@
 ## Замечание по TASK-077–080
 
 Задачи про `site.json`/`SiteSettings`, build-time генерацию `index.html` и вынос UI-строк в JSON помечены в `tasks.json` как **cancelled** (не выполнялись). Запрос про вынос `title` в JSON относится именно к ним.
+
+## TASK-084 — Email простым текстом — done
+
+- В `ContactSection` email рендерится как `<span class="contact__link contact__link--static">` — без `<a>`/`<button>`, без `href`: иконка + подпись «Email» + адрес текстом (`@EmailAddress`). Telegram/hh остаются обычными ссылками.
+- Обфускация и JS-обработчики email отсутствуют (`openMailto`/`data-mail`/base64 удалены ранее).
+- CSS: `.contact__link--static` (курсор по умолчанию, нейтрализован hover), `.contact__value` (адрес обычным текстом, выделяется/копируется).
+- Проверка (CDP, dev и published): email-контакт — `SPAN` (не `A`/`BUTTON`), текст «Email pharaunwizard@gmail.com», `href` отсутствует; `openMailto === undefined`, `[data-mail]` нет; Telegram/hh — `A`; переполнения нет; `CONSOLE_ENTRIES: 0`.
+- Задача удалена из `tasks.json` (по обновлённым инструкциям), история — в git.
