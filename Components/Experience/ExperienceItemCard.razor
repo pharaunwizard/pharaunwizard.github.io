@@ -8,7 +8,7 @@
             @onclick="HandleToggle">
         <span class="exp-card__marker" aria-hidden="true"></span>
         <span class="exp-card__headings">
-            <span class="exp-card__company">@Item.Company</span>
+            <span class="exp-card__company" id="@CompanyId">@Item.Company</span>
             <span class="exp-card__role">@Item.Role</span>
             <span class="exp-card__period">
                 @Period
@@ -27,7 +27,7 @@
 
     <p class="exp-card__summary">@Item.Summary</p>
 
-    <div id="@PanelId" class="exp-card__panel" aria-hidden="@(!IsOpen)">
+    <div id="@PanelId" class="exp-card__panel" role="region" aria-labelledby="@CompanyId" aria-hidden="@(!IsOpen)">
         <div class="exp-card__panel-inner">
             <div class="exp-card__panel-body">
             @if (Item.Details.Count > 0)
@@ -80,6 +80,8 @@
     public EventCallback<string> OnToggle { get; set; }
 
     private string PanelId => $"exp-panel-{Item.Id}";
+
+    private string CompanyId => $"exp-company-{Item.Id}";
 
     private string Period => $"{Format(Item.StartDate)} – {(string.IsNullOrWhiteSpace(Item.EndDate) ? "наст. время" : Format(Item.EndDate))}";
 
