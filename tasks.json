@@ -309,7 +309,7 @@
         "Шаг 3: ожидаемый результат — переход на страницу hh"
       ],
       "dependencies": ["TASK-012"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-017",

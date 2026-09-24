@@ -446,8 +446,13 @@ a:hover {
 }
 
 @media (max-width: 720px) {
+    .hero {
+        padding-block: var(--space-7);
+    }
+
     .hero__inner {
         grid-template-columns: 1fr;
+        gap: var(--space-5);
         text-align: center;
     }
 
@@ -457,8 +462,24 @@ a:hover {
         align-items: center;
     }
 
+    .hero__photo img {
+        width: 168px;
+        height: 168px;
+        max-width: 168px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .hero__name {
+        margin-bottom: var(--space-1);
+    }
+
     .hero__offer {
         max-width: 100%;
+    }
+
+    .hero__cta {
+        margin-bottom: var(--space-4);
     }
 }
 
