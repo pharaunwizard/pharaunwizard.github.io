@@ -2,25 +2,37 @@
   {
     "id": "backend-dotnet",
     "title": "Backend / .NET",
-    "description": "Проектирование и разработка серверных систем: API, интеграции, работа с данными и нагрузкой.",
+    "description": [
+      "Проектирование и разработка серверных систем: API, интеграции, работа с данными и нагрузкой.",
+      "От архитектуры и модели данных до продакшена: профилирование, кэширование, отказоустойчивость и наблюдаемость."
+    ],
     "items": ["C#", ".NET 10", "ASP.NET Core", "EF Core", "gRPC", "REST", "PostgreSQL", "SQL Server", "Redis", "Kafka", "RabbitMQ", "xUnit"]
   },
   {
     "id": "android",
     "title": "Android",
-    "description": "Нативная мобильная разработка и поддержка клиентских приложений.",
+    "description": [
+      "Нативная мобильная разработка и поддержка клиентских приложений.",
+      "Опыт работы с современным стеком Jetpack и выстраиванием архитектуры под рост и поддержку."
+    ],
     "items": ["Kotlin", "Java", "Android SDK", "Jetpack Compose", "Coroutines / Flow", "Retrofit", "Room", "Hilt", "Gradle"]
   },
   {
     "id": "ai",
     "title": "AI / ML",
-    "description": "Практическое применение ИИ: интеграция моделей, LLM-пайплайны и классический ML.",
+    "description": [
+      "Практическое применение ИИ: интеграция моделей, LLM-пайплайны и классический ML.",
+      "Умею встраивать ИИ в продукт: от прототипа и оценки качества до стабильной эксплуатации."
+    ],
     "items": ["Python", "PyTorch", "scikit-learn", "LLM APIs", "RAG", "Prompt Engineering", "ONNX", "ML.NET"]
   },
   {
     "id": "devops",
     "title": "DevOps / Tooling",
-    "description": "Автоматизация сборки, доставки и эксплуатации сервисов.",
+    "description": [
+      "Автоматизация сборки, доставки и эксплуатации сервисов.",
+      "Настраиваю CI/CD, контейнеризацию и мониторинг, чтобы релизы были предсказуемыми."
+    ],
     "items": ["Git", "GitHub Actions", "Docker", "Kubernetes", "Linux", "CI/CD", "Prometheus", "Grafana"]
   }
 ]

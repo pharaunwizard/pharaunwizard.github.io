@@ -6,7 +6,7 @@ public class SkillGroup
 
     public string Title { get; set; } = string.Empty;
 
-    public string Description { get; set; } = string.Empty;
+    public List<string> Description { get; set; } = new();
 
     public List<string> Items { get; set; } = new();
 }

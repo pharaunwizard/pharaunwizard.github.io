@@ -17,21 +17,14 @@
             <ul class="contacts__list">
                 @foreach (var contact in profile.Contacts)
                 {
+                    var external = !contact.Url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase);
                     <li class="contact contact--@contact.Type">
-                        @if (IsEmail(contact))
-                        {
-                            <a class="contact__link" href="#" data-type="@contact.Type" data-mail="@MailData(contact)">
-                                <ContactIcon Type="@contact.Type" />
-                                <span class="contact__label">@contact.Label</span>
-                            </a>
-                        }
-                        else
-                        {
-                            <a class="contact__link" href="@contact.Url" data-type="@contact.Type" target="_blank" rel="noopener noreferrer">
-                                <ContactIcon Type="@contact.Type" />
-                                <span class="contact__label">@contact.Label</span>
-                            </a>
-                        }
+                        <a class="contact__link" href="@contact.Url" data-type="@contact.Type"
+                           target="@(external ? "_blank" : null)"
+                           rel="@(external ? "noopener noreferrer" : null)">
+                            <ContactIcon Type="@contact.Type" />
+                            <span class="contact__label">@contact.Label</span>
+                        </a>
                     </li>
                 }
             </ul>
@@ -45,20 +38,5 @@
     protected override async Task OnInitializedAsync()
     {
         profile = await Content.GetProfileAsync();
-    }
-
-    private static bool IsEmail(ContactLink contact)
-        => contact.Type.Equals("email", StringComparison.OrdinalIgnoreCase)
-           || contact.Url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase);
-
-    // Адрес кодируется (base64), чтобы не хранить email открытым текстом в DOM;
-    // декодирование и запуск mailto происходят синхронно в обработчике клика (app.js).
-    private static string MailData(ContactLink contact)
-    {
-        var address = contact.Url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase)
-            ? contact.Url["mailto:".Length..]
-            : contact.Url;
-
-        return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(address));
     }
 }

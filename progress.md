@@ -521,3 +521,25 @@
 - Решение: email рендерится как нативный `<a class="contact__link" href="#" data-mail="<base64>">` (адрес обфусцирован через base64, без `mailto:`/открытого адреса в DOM). Внешний `app.js` вешает делегированный `click`-обработчик, который **синхронно** в рамках жеста декодирует адрес и выполняет `window.location.href = 'mailto:' + address`, с `preventDefault()` и `try/catch` (если почтовый клиент не настроен — интерфейс не ломается).
 - Проверка (CDP): клик по email вызывает `marsCv.openMailto` с корректным адресом (`pharaunwizard@gmail.com`), `location.hash` не меняется (preventDefault), в DOM нет ни открытого email, ни строки `mailto:`; Telegram/hh работают; CSP/консоль без ошибок.
 - Проверено в **Chrome** и **Edge**; Firefox в текущем окружении не установлен (использован стандартный нативный паттерн, совместимый с Firefox).
+
+## TASK-076 — Email как обычная mailto-ссылка — done
+
+- Email рендерится как нативная `<a class="contact__link" href="mailto:...">` (как Telegram/hh; `target`/`rel` только у внешних http-ссылок). Удалены base64/data-mail, ветка `IsEmail`/`MailData` и JS-обработчик `marsCv.openMailto` вместе с click-listener.
+- Blazor Router не перехватывает `mailto:` (не same-origin).
+- Проверка (CDP): `a[data-type=email]` → `href="mailto:pharaunwizard@gmail.com"`, `[data-mail]` отсутствует, `typeof openMailto === 'undefined'`; Telegram (`target=_blank`) и hh работают; переполнения нет; `CONSOLE_ENTRIES: 0`.
+
+## TASK-081 — skills.json: description как список абзацев — done
+
+- `SkillGroup.Description` → `List<string>`; `skills.json` обновлён — у каждой группы массив из 2 абзацев.
+- `SkillGroupCard` рендерит каждый абзац отдельным `<p>` внутри `.skill-group__description`; CSS-отступы абзацев настроены.
+- Проверка (CDP): 4 группы, в раскрытой «Backend / .NET» — 2 абзаца; при временно отсутствующем `description` карточка не падает (0 абзацев, 9 навыков); `CONSOLE_ENTRIES: 0`.
+- Pre-build валидация (TASK-073) проходит.
+
+## TASK-082 — PRD: SkillGroup.Description как массив — done
+
+- В PRD §5.4 пример `skills.json` обновлён: `"description": ["string", "..."]` с пояснением; добавлена заметка, что `SkillGroup.Description` — список абзацев (`List<string>`), по одному `<p>` на элемент, пустой массив допустим.
+- Проверка: PRD соответствует реализации.
+
+## Замечание по TASK-077–080
+
+Задачи про `site.json`/`SiteSettings`, build-time генерацию `index.html` и вынос UI-строк в JSON помечены в `tasks.json` как **cancelled** (не выполнялись). Запрос про вынос `title` в JSON относится именно к ним.

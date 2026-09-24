@@ -471,6 +471,14 @@ html.app-loaded .boot-skeleton {
     color: var(--color-text-muted);
 }
 
+.skill-group__description p {
+    margin: 0 0 var(--space-3);
+}
+
+.skill-group__description p:last-child {
+    margin-bottom: 0;
+}
+
 /* ============================================================
    Pet-проекты
    ============================================================ */

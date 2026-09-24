@@ -1475,6 +1475,143 @@
       ],
       "dependencies": ["TASK-018", "TASK-015"],
       "status": "done"
+    },
+    {
+      "id": "TASK-076",
+      "category": "functional",
+      "priority": "high",
+      "description": "Email всё ещё не работает после TASK-075. РЕШЕНИЕ: сделать email обычной открытой ссылкой <a href=\"mailto:...\"> как Telegram/hh — без обфускации, base64 и JS-обработчиков. mailto: не является same-origin, поэтому Blazor Router его не перехватывает, и браузер открывает клиент нативно.",
+      "acceptance_criteria": [
+        "Email рендерится как обычный <a class=\"contact__link\" href=\"mailto:...\"> — так же, как Telegram и hh.ru",
+        "Удалены обфускация/base64 (data-mail), JS-обработчик openMailto и специальная ветка для email в ContactSection",
+        "Клик по Email надёжно открывает почтовый клиент с корректным адресом (при настроенном обработчике mailto); это ок, что адрес виден открыто",
+        "Blazor Router не перехватывает ссылку (mailto не same-origin)",
+        "Telegram и hh.ru работают как прежде; консоль без ошибок; CSP не нарушается"
+      ],
+      "test_steps": [
+        "Шаг 1: открыть секцию контактов, кликнуть Email — открывается почтовый клиент",
+        "Шаг 2: убедиться, что в DOM email-ссылка имеет href=\"mailto:...\"",
+        "Шаг 3: проверить, что нет base64/data-mail и JS-обработчика openMailto",
+        "Шаг 4: проверить, что Telegram/hh не сломаны; консоль чистая",
+        "Шаг 5: ожидаемый результат — email-ссылка работает нативно и стабильно"
+      ],
+      "dependencies": ["TASK-075", "TASK-018"],
+      "status": "pending"
+    },
+    {
+      "id": "TASK-077",
+      "category": "functional",
+      "priority": "high",
+      "description": "Создать wwwroot/content/site.json — единый источник настроек сайта: title, description, lang, themeColor, canonical URL, OG/Twitter поля, siteName, og:image. Заменить плейсхолдерные «персональное портфолио» на реальные значения.",
+      "acceptance_criteria": [
+        "Создан content/site.json со структурой: siteName, title, description, lang, themeColor, url, ogImage, ogImageAlt (и опц. twitter*)",
+        "Значения персональные (имя/роль владельца), без обезличенного «персональное портфолио»",
+        "Файл включён в pre-build валидацию контента (TASK-073)",
+        "JSON валиден и десериализуется в C#-модель SiteSettings"
+      ],
+      "test_steps": [
+        "Шаг 1: провалидировать site.json",
+        "Шаг 2: собрать проект — валидация проходит",
+        "Шаг 3: ожидаемый результат — настройки вынесены в JSON"
+      ],
+      "dependencies": ["TASK-073", "TASK-003"],
+      "status": "cancelled"
+    },
+    {
+      "id": "TASK-078",
+      "category": "infrastructure",
+      "priority": "high",
+      "description": "Генерировать статический index.html (title, description, lang, theme-color, OG/Twitter, canonical) из site.json НА ЭТАПЕ СБОРКИ, чтобы превью ссылок в Telegram/hh работало (краулеры не исполняют JS). Правка значений — только в site.json.",
+      "acceptance_criteria": [
+        "index.html генерируется/обновляется из site.json (шаблон с плейсхолдерами + MSBuild target/скрипт перед Build/Publish)",
+        "Изменение site.json меняет соответствующие мета-теги в собранном статическом index.html",
+        "OG/Twitter-теги присутствуют в статическом HTML (не только в рантайме); превью ссылки корректно",
+        "CSP и остальная разметка index.html не нарушены; сборка и dev-запуск работают",
+        "Статический index.html не перезаписывается вручную (источник — site.json + шаблон)"
+      ],
+      "test_steps": [
+        "Шаг 1: изменить title в site.json и собрать проект",
+        "Шаг 2: проверить view-source собранного index.html — title/OG обновились",
+        "Шаг 3: проверить, что приложение запускается и CSP-ошибок нет",
+        "Шаг 4: ожидаемый результат — метаданные управляются из JSON, превью работает"
+      ],
+      "dependencies": ["TASK-077", "TASK-004"],
+      "status": "cancelled"
+    },
+    {
+      "id": "TASK-079",
+      "category": "functional",
+      "priority": "medium",
+      "description": "Вынести в JSON прочие жёстко зашитые UI-строки: заголовки секций («Обо мне», «Опыт», «Навыки», «Pet-проекты», «Контакты»), intro-текст контактов, тексты пустых состояний. Рендерить через ContentService.",
+      "acceptance_criteria": [
+        "Заголовки секций и intro берутся из JSON (site.json или отдельный ui.json)",
+        "Смена текста не требует правки Razor-компонентов",
+        "Если поле отсутствует/пустое — используется разумный дефолт (страница не ломается)",
+        "Валидация контента (TASK-073) покрывает новый файл/поля"
+      ],
+      "test_steps": [
+        "Шаг 1: изменить строку заголовка в JSON и перезагрузить — текст обновился",
+        "Шаг 2: удалить поле — секция не падает, используется дефолт",
+        "Шаг 3: ожидаемый результат — UI-строки управляются из JSON"
+      ],
+      "dependencies": ["TASK-077", "TASK-008"],
+      "status": "cancelled"
+    },
+    {
+      "id": "TASK-080",
+      "category": "infrastructure",
+      "priority": "low",
+      "description": "Обновить PRD.md: добавить site.json и модель SiteSettings в раздел модели данных, описать механику build-time генерации index.html из JSON.",
+      "acceptance_criteria": [
+        "В PRD §5 добавлены site.json и SiteSettings",
+        "Описана генерация статических мета-тегов из JSON (build-time)",
+        "PRD согласован с реализацией"
+      ],
+      "test_steps": [
+        "Шаг 1: открыть PRD.md и проверить раздел модели данных",
+        "Шаг 2: ожидаемый результат — PRD описывает настройки и генерацию"
+      ],
+      "dependencies": ["TASK-078"],
+      "status": "cancelled"
+    },
+    {
+      "id": "TASK-081",
+      "category": "functional",
+      "priority": "high",
+      "description": "skills.json: описание группы навыков (`description`) должно быть списком абзацев, как `details` в experiencia.json, а не одной строкой.",
+      "acceptance_criteria": [
+        "Модель SkillGroup: Description становится List<string> (массив абзацев)",
+        "skills.json: поле description — массив строк (каждый элемент — абзац), как details в experience.json",
+        "SkillsSection/SkillGroupCard рендерят каждый абзац отдельным <p>",
+        "Пустой/отсутствующий массив не ломает карточку (просто без абзацев)",
+        "Pre-build валидация JSON (TASK-073) принимает новый тип и не падает",
+        "Содержимое skills.json обновлено на массивы (несколько абзацев на группу)"
+      ],
+      "test_steps": [
+        "Шаг 1: собрать проект — валидация и десериализация проходят",
+        "Шаг 2: запустить приложение, раскрыть группу Skills — видно несколько абзацев описания",
+        "Шаг 3: временно убрать description у группы — карточка не падает",
+        "Шаг 4: ожидаемый результат — описание выводится списком абзацев, как в опыте"
+      ],
+      "dependencies": ["TASK-041", "TASK-043", "TASK-073"],
+      "status": "done"
+    },
+    {
+      "id": "TASK-082",
+      "category": "infrastructure",
+      "priority": "low",
+      "description": "Обновить PRD.md: описать SkillGroup.Description как список абзацев и пример skills.json с массивом.",
+      "acceptance_criteria": [
+        "В PRD §5 модель SkillGroup отражает description как массив строк",
+        "Пример skills.json соответствует новой структуре",
+        "PRD согласован с реализацией"
+      ],
+      "test_steps": [
+        "Шаг 1: открыть PRD.md и проверить раздел модели данных",
+        "Шаг 2: ожидаемый результат — описание модели обновлено"
+      ],
+      "dependencies": ["TASK-081"],
+      "status": "done"
     }
   ]
 }

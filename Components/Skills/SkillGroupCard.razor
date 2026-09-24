@@ -18,9 +18,14 @@
     <div id="@PanelId" class="exp-card__panel" role="region" aria-labelledby="@TitleId" aria-hidden="@(!IsOpen)">
         <div class="exp-card__panel-inner">
             <div class="exp-card__panel-body">
-                @if (!string.IsNullOrWhiteSpace(Group.Description))
+                @if (Group.Description.Count > 0)
                 {
-                    <p class="skill-group__description">@Group.Description</p>
+                    <div class="skill-group__description">
+                        @foreach (var paragraph in Group.Description)
+                        {
+                            <p>@paragraph</p>
+                        }
+                    </div>
                 }
                 @if (Group.Items.Count > 0)
                 {
