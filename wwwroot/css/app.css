@@ -21,7 +21,7 @@
     /* Текст */
     --color-text: #f3e8de;
     --color-text-muted: #c8a894;
-    --color-text-dim: #a17f6c;
+    --color-text-dim: #b0907b;
 
     /* Ритм отступов */
     --space-1: 0.25rem;
@@ -368,8 +368,8 @@ a:hover {
     position: absolute;
     inset: -10%;
     background:
-        radial-gradient(600px 400px at 75% 12%, rgba(214, 110, 54, 0.16), transparent 60%),
-        radial-gradient(520px 420px at 12% 85%, rgba(150, 60, 30, 0.14), transparent 60%);
+        radial-gradient(600px 400px at 75% 12%, rgba(214, 110, 54, 0.24), transparent 60%),
+        radial-gradient(520px 420px at 12% 85%, rgba(150, 60, 30, 0.20), transparent 60%);
 }
 
 .mars-bg__dust {
