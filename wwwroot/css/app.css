@@ -99,6 +99,11 @@ p {
     margin: 0 0 var(--space-4);
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 a {
     color: var(--color-sand);
     text-decoration: none;
@@ -264,6 +269,104 @@ a:hover {
     position: absolute;
     right: 0.75rem;
     top: 0.5rem;
+}
+
+/* ============================================================
+   Hero (первый экран)
+   ============================================================ */
+
+.hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-block: var(--space-8);
+}
+
+.hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    gap: var(--space-7);
+    align-items: center;
+}
+
+.hero__skeleton {
+    grid-column: 1 / -1;
+    min-height: 360px;
+}
+
+.hero__photo {
+    justify-self: center;
+}
+
+.hero__photo img {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-strong);
+    box-shadow: var(--shadow-2);
+}
+
+.hero__name {
+    font-size: var(--fs-h1);
+    margin-bottom: var(--space-2);
+}
+
+.hero__role {
+    color: var(--color-accent-strong);
+    font-weight: 600;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin-bottom: var(--space-4);
+}
+
+.hero__offer {
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    max-width: 46ch;
+    color: var(--color-text-muted);
+}
+
+.hero__cta {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-6);
+}
+
+.hero__scroll {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--color-text-dim);
+    font-size: var(--fs-small);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.hero__scroll-arrow {
+    display: block;
+    font-size: 1.5rem;
+    animation: hero-bounce 2s ease-in-out infinite;
+}
+
+@keyframes hero-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+@media (max-width: 720px) {
+    .hero__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero__offer {
+        max-width: 100%;
+    }
 }
 
 /* ============================================================

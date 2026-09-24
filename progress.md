@@ -101,3 +101,11 @@
 - Самая свежая запись раскрыта по умолчанию (первая после сортировки).
 - Раскрытая карточка показывает `details`, `achievements` и `technologies`.
 - Проверка (headless-Chrome DOM): ровно 1 карточка `exp-card--open`, 1 `exp-card--latest`, `aria-expanded="true"` ×1 и `"false"` ×2, «наст. время», «Достижения», «Технологии» присутствуют.
+
+## TASK-022 — Hero (первый экран) — done
+
+- CSS Hero: двухколоночная сетка (фото + контент) на десктопе, одноколоночная по центру ≤720px; `min-height: 100svh`; фото из `profile.json` с рамкой/тенью.
+- Скролл-хинт «Полный опыт ниже» с анимированной стрелкой (`hero-bounce`, отключается reduced-motion).
+- Добавлено глобальное `img { max-width: 100%; height: auto; }`.
+- Проверка через Chrome DevTools Protocol (эмуляция 360×800): `scrollWidth = innerWidth = 360`, переполнений нет; скриншот подтверждает корректную одноколоночную вёрстку.
+- Инструменты верификации: `serve-start.ps1`, `serve-stop.ps1`, `cdp.ps1` (эмуляция устройства + `Runtime.evaluate` + `Page.captureScreenshot`).

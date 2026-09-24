@@ -416,7 +416,7 @@
         "Шаг 3: ожидаемый результат — все элементы Hero видны и не выходят за экран"
       ],
       "dependencies": ["TASK-012", "TASK-021"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-023",
