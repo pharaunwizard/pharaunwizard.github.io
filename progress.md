@@ -488,3 +488,16 @@
 - Цвета вынесены в CSS-переменные (`--p-core/--p-mid/--p-halo/--p-glow1/--p-glow2`); градиенты радиальные, свечение двухслойное (тёплый ближний + голубой дальний), мягкое без «неона».
 - Траектории TASK-063 сохранены; `pointer-events:none`; reduced-motion → статично.
 - Проверка (CDP, dev и published): 5 warm + 3 cool, голубой `rgb(143,179,217)` присутствует в фоне и тенях обеих групп; крупный скриншот показывает голубую и оранжевую частицы рядом; переполнения нет; `CONSOLE_ENTRIES: 0`.
+
+## TASK-071 — Деликатнее частицы Hero — done
+
+- Интенсивность частиц умеренно снижена (~25–30%): базовая `opacity 0.85 → 0.62` (пульсация 0.5–0.72), свечение чуть слабее (`0 0 5px` / `0 0 13px`). Закатная палитра (оранжевый + стально-голубой #8fb3d9) сохранена.
+- Проверка (CDP, dev и published): 8 частиц, голубой компонент на месте, переполнения нет; крупный скриншот подтверждает более деликатный вид; `CONSOLE_ENTRIES: 0`.
+
+## TASK-072 — Собственные шрифты (Unbounded + Inter) — done
+
+- Скачаны и засамохостены woff2-сабсеты (кириллица + латиница) в `wwwroot/fonts`: `inter-{cyrillic,cyrillic-ext,latin,latin-ext}.woff2`, `unbounded-{...}.woff2` (8 файлов).
+- В `app.css` добавлены `@font-face` с `font-display: swap`, `font-weight` диапазоном (Inter 400–700, Unbounded 600–700) и `unicode-range` для ленивой подгрузки сабсетов.
+- CSS-переменные: `--font-sans: 'Inter', …`, `--font-display: 'Unbounded', …`; заголовки `h1/h2/h3` (включая имя в Hero и названия секций) переведены на Unbounded, системный стек оставлен fallback.
+- В `index.html` добавлен `preload` для `inter-cyrillic.woff2` и `unbounded-cyrillic.woff2`.
+- Проверка (CDP, dev и published): `document.fonts.check` для кириллицы Inter и Unbounded = true; `body` → Inter, `h1` → Unbounded; шрифты грузятся с 'self'; кириллица отображается корректно; CSP без ошибок; нет горизонтального переполнения на 360/1024/1440; LCP (без искусственного throttling) ≈ 1.0 c (элемент — hero-фото); `CONSOLE_ENTRIES: 0`.

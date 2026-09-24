@@ -3,6 +3,79 @@
    Палитра: «марсианская ночь» + ржаво-оранжевые акценты
    ============================================================ */
 
+/* Шрифты (самохостинг: кириллица + латиница, variable) */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('/fonts/inter-cyrillic-ext.woff2') format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('/fonts/inter-cyrillic.woff2') format('woff2');
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('/fonts/inter-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Unbounded';
+    font-style: normal;
+    font-weight: 600 700;
+    font-display: swap;
+    src: url('/fonts/unbounded-cyrillic-ext.woff2') format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@font-face {
+    font-family: 'Unbounded';
+    font-style: normal;
+    font-weight: 600 700;
+    font-display: swap;
+    src: url('/fonts/unbounded-cyrillic.woff2') format('woff2');
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+    font-family: 'Unbounded';
+    font-style: normal;
+    font-weight: 600 700;
+    font-display: swap;
+    src: url('/fonts/unbounded-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: 'Unbounded';
+    font-style: normal;
+    font-weight: 600 700;
+    font-display: swap;
+    src: url('/fonts/unbounded-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
     /* Цвета фона */
     --color-bg: #160d0b;
@@ -36,7 +109,8 @@
     --section-pad-y: clamp(3.5rem, 8vw, 7rem);
 
     /* Типографика */
-    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-sans: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-display: 'Unbounded', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --fs-h1: clamp(2.1rem, 6vw, 4rem);
     --fs-h2: clamp(1.6rem, 4vw, 2.5rem);
     --fs-h3: clamp(1.15rem, 2.5vw, 1.4rem);
@@ -90,9 +164,10 @@ h1,
 h2,
 h3 {
     margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
     line-height: var(--lh-tight);
     font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
 }
 
 p {
@@ -335,7 +410,7 @@ html.app-loaded .boot-skeleton {
     }
 
     .boot-skeleton__photo {
-        max-width: 168px;
+        max-width: 200px;
         aspect-ratio: 1 / 1;
         border-radius: 50%;
     }
@@ -571,9 +646,9 @@ button.contact__link {
         radial-gradient(circle at 50% 50%, var(--p-core) 0%, var(--p-mid) 40%, transparent 70%),
         radial-gradient(circle at 50% 50%, var(--p-halo) 0%, transparent 92%);
     box-shadow:
-        0 0 6px var(--p-glow1),
-        0 0 16px var(--p-glow2);
-    opacity: 0.85;
+        0 0 5px var(--p-glow1),
+        0 0 13px var(--p-glow2);
+    opacity: 0.62;
     animation: hero-dust var(--dur) ease-in-out var(--delay) infinite;
 }
 
@@ -596,21 +671,21 @@ button.contact__link {
 @keyframes hero-dust {
     0% {
         transform: translate3d(0, 0, 0);
-        opacity: 0.65;
+        opacity: 0.5;
     }
     25% {
         transform: translate3d(var(--dx1), var(--dy1), 0);
     }
     50% {
         transform: translate3d(var(--dx2), var(--dy2), 0);
-        opacity: 0.9;
+        opacity: 0.72;
     }
     75% {
         transform: translate3d(var(--dx3), var(--dy3), 0);
     }
     100% {
         transform: translate3d(0, 0, 0);
-        opacity: 0.65;
+        opacity: 0.5;
     }
 }
 
@@ -951,7 +1026,7 @@ button.contact__link {
 
     .hero__particle {
         animation: none;
-        opacity: 0.85;
+        opacity: 0.62;
     }
 
     .reveal,
