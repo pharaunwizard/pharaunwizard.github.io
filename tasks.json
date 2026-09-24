@@ -1496,7 +1496,7 @@
         "Шаг 5: ожидаемый результат — email-ссылка работает нативно и стабильно"
       ],
       "dependencies": ["TASK-075", "TASK-018"],
-      "status": "pending"
+      "status": "done"
     },
     {
       "id": "TASK-077",
