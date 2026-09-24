@@ -481,6 +481,7 @@ html.app-loaded .boot-skeleton {
     border: 1px solid var(--color-border-strong);
     border-radius: var(--radius-md);
     background: var(--color-surface);
+    color: var(--color-sand);
     font-weight: 600;
 }
 
@@ -491,7 +492,7 @@ html.app-loaded .boot-skeleton {
 
 button.contact__link {
     font: inherit;
-    color: var(--color-text);
+    color: var(--color-sand);
     cursor: pointer;
 }
 

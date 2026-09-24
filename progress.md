@@ -453,3 +453,9 @@
 ## TASK-064 — Регресс после TASK-063 — done
 
 - Проверка (CDP, 360/1024/1440 на dev и 1200/1440 на published): 8 частиц с траекториями и свечением, фоновое свечение `.bg-glow` на месте, порядок секций, опыт 3, Skills 4, проекты 4, контакты 3, переполнения нет, `CONSOLE_ENTRIES: 0` — регрессий нет.
+
+## TASK-065 — Единый цвет текста контактных кнопок — done
+
+- Причина расхождения: Telegram/hh — это `<a>` (наследовали `--color-sand`), а Email — `<button>` с явным `color: var(--color-text)`.
+- Исправление: базовому `.contact__link` задан `color: var(--color-sand)`, у `button.contact__link` цвет приведён к `--color-sand`; hover (`.contact__link:hover` → `--color-accent-strong`) и focus (`:focus-visible`) у всех трёх одинаковы; иконки — единый `--color-accent`.
+- Проверка (CDP): все три ссылки и их подписи имеют `rgb(232,192,125)`, иконки `rgb(214,110,54)`, `allEqual=true`; контраст sand на surface = 10.3:1 (≥4.5); `CONSOLE_ENTRIES: 0`.
