@@ -15,16 +15,18 @@
                 <h1 id="hero-title" class="hero__name">@profile.Name</h1>
                 <p class="hero__role">@profile.Role</p>
                 <p class="hero__offer">@profile.Offer</p>
-                @if (hh is not null)
-                {
-                    <a class="btn btn--accent hero__cta" href="@hh.Url" target="_blank" rel="noopener noreferrer">
-                        Смотреть резюме на hh.ru
+                <div class="hero__actions">
+                    @if (hh is not null)
+                    {
+                        <a class="btn btn--accent hero__cta" href="@hh.Url" target="_blank" rel="noopener noreferrer">
+                            Смотреть резюме на hh.ru
+                        </a>
+                    }
+                    <a class="hero__scroll" href="#about">
+                        Полный опыт ниже
+                        <span class="hero__scroll-arrow" aria-hidden="true">↓</span>
                     </a>
-                }
-                <a class="hero__scroll" href="#about">
-                    Полный опыт ниже
-                    <span class="hero__scroll-arrow" aria-hidden="true">↓</span>
-                </a>
+                </div>
             </div>
         }
     </div>

@@ -588,9 +588,16 @@ button.contact__link {
     color: var(--color-text-muted);
 }
 
+.hero__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+}
+
 .hero__cta {
-    margin-top: var(--space-2);
-    margin-bottom: var(--space-6);
+    margin: 0;
 }
 
 .hero__scroll {
@@ -648,8 +655,9 @@ button.contact__link {
         max-width: 100%;
     }
 
-    .hero__cta {
-        margin-bottom: var(--space-4);
+    .hero__actions {
+        align-items: center;
+        width: 100%;
     }
 }
 

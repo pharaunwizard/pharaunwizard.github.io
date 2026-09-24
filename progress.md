@@ -278,3 +278,9 @@
 
 - Создан `MarsCV.slnx` (`dotnet new sln`, формат slnx), в него добавлен `MarsCV.csproj`.
 - Проверка: `dotnet build MarsCV.slnx` — успешно, 0 ошибок/предупреждений. Формат `.slnx` открывается Visual Studio.
+
+## TASK-038 — Наложение кнопки hh и скролл-хинта на десктопе — done
+
+- Причина: CTA и подсказка были inline-flex соседями и вставали в одну строку вплотную.
+- Исправление: оба элемента обёрнуты в `.hero__actions` (`display:flex; flex-direction:column; align-items:flex-start; gap: var(--space-5)`); на ≤720px `align-items:center`.
+- Проверка (CDP, bounding boxes): при 1024/1440/360 `intersect=false`, отступ между элементами 24px, горизонтального переполнения нет.
