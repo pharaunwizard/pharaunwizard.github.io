@@ -129,3 +129,11 @@
 - Раскрываемая панель: `role="region"`, `aria-labelledby` (ссылка на название компании), `aria-hidden` при закрытии.
 - Видимый фокус-индикатор через глобальный `:focus-visible`.
 - Проверка через CDP (trusted input): фокус на 2-й карточке + `Enter` → открылась «Orbit Retail», `aria-expanded=[false,true,false]`; фокус на 3-й + `Space` → открылась «Vector Soft», `aria-expanded=[false,false,true]`. Логика клика подтверждена отдельно.
+
+## TASK-005 — Публикация портативной статики — done
+
+- `dotnet publish -c Release` завершается успешно → `bin/Release/net10.0/publish/wwwroot`.
+- В папке публикации: `index.html` (+`.br`/`.gz`), `_framework`, `content`, `css`, `img`; всего 43 `.br`-файла.
+- Публикуемый `index.html` содержит статические OG-теги.
+- Проверка: локальный статический сервер (Node, `static-server.js`) отдаёт сборку: `index.html` → 200, `_framework/blazor.webassembly*.js` → 200 (`text/javascript`), CDP-рендер подтверждает 5 секций, 3 карточки опыта, 4 проекта — не хуже dev-режима.
+- Замечание: publish сообщает «Publishing without optimizations» (нет workload `wasm-tools`) — обрабатывается в TASK-034.
