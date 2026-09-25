@@ -63,10 +63,13 @@
     }
 
     private static string EmailAddress(ContactLink contact)
-        => contact.Url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase)
-            ? contact.Url["mailto:".Length..]
-            : contact.Url;
+    {
+        var url = contact.Url ?? string.Empty;
+        return url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase)
+            ? url["mailto:".Length..]
+            : url;
+    }
 
     private static bool IsUnavailable(string? url)
-        => string.IsNullOrWhiteSpace(url) || url.Contains("000000000000000000000000");
+        => string.IsNullOrWhiteSpace(url);
 }
