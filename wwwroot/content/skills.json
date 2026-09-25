@@ -1,38 +1,51 @@
 [
   {
-    "id": "backend-dotnet",
-    "title": "Backend / .NET",
+    "id": "dotnet",
+    "title": ".NET",
     "description": [
-      "Проектирование и разработка серверных систем: API, интеграции, работа с данными и нагрузкой.",
-      "От архитектуры и модели данных до продакшена: профилирование, кэширование, отказоустойчивость и наблюдаемость."
+      "Работаю с платформой .NET, асинхронным программированием (async/await, Task) и LINQ. Имею практический опыт разработки веб-приложений на ASP.NET Core с использованием MVC, Razor Pages, Blazor. В Сбербанке разрабатывал и поддерживал сервисы на Web API.",
+      "В работе с данными активно применял Entity Framework и Dapper. Имею опыт взаимодействия с нативным кодом через P/Invoke и Reverse P/Invoke, в частности под Unity, а также интеграции с API OptiTrack (Motion Capture Systems). Разрабатывал внутренние клиентские приложения для тестировщиков на WPF, WinForms, Xamarin и Unity, а также проводил эксперименты с .NET MAUI.",
+      "Для оценки производительности кода использовал BenchmarkDotNet. Писал обёртки над ADB, а также применял Puppeteer Sharp и HTML Agility Pack для автоматизации работы с веб-контентом и парсинга HTML.",
+      "P.S. Данная страница реализована на Blazor :)"
     ],
-    "items": ["C#", ".NET 10", "ASP.NET Core", "EF Core", "gRPC", "REST", "PostgreSQL", "SQL Server", "Redis", "Kafka", "RabbitMQ", "xUnit"]
+    "items": ["C#", ".NET", "ASP.NET Core", "MVC", "Razor Pages", "Blazor", "Web API", "Entity Framework", "Dapper", "LINQ", "async/await", "Task", "P/Invoke", "Unity", "WPF", "WinForms", "Xamarin", ".NET MAUI", "BenchmarkDotNet", "ADB", "Puppeteer Sharp", "HTML Agility Pack"
+]
   },
   {
-    "id": "android",
-    "title": "Android",
+    "id": "python",
+    "title": "Python",
     "description": [
-      "Нативная мобильная разработка и поддержка клиентских приложений.",
-      "Опыт работы с современным стеком Jetpack и выстраиванием архитектуры под рост и поддержку."
+      "Владею Python, включая асинхронное программирование на asyncio. Имею практический опыт разработки веб-приложений и API на Flask, Django и FastAPI, а также создания Telegram-ботов.",
+      "Занимался анализом больших объёмов торговых данных в формате свечей OHLCV. Активно использовал Selenium, Camoufox и Playwright для автоматизации браузера, писал множество скриптов для автоматизации различной рутинной работы, а также изучал и использовал недокументированные API Instagram, YouTube и Google.",
+      "Экспериментировал с OpenCV, YOLO и Keras (PyTorch)."
     ],
-    "items": ["Kotlin", "Java", "Android SDK", "Jetpack Compose", "Coroutines / Flow", "Retrofit", "Room", "Hilt", "Gradle"]
+    "items": ["Python", "asyncio", "Flask", "Django", "FastAPI", "requests", "Telegram Bot API", "Selenium", "Camoufox", "Playwright", "Trading Data Analysis", "Instagram API", "YouTube API", "Google API", "Automation Scripts", "OpenCV", "YOLO", "Keras", "PyTorch"]
   },
   {
     "id": "ai",
-    "title": "AI / ML",
+    "title": "AI",
     "description": [
-      "Практическое применение ИИ: интеграция моделей, LLM-пайплайны и классический ML.",
-      "Умею встраивать ИИ в продукт: от прототипа и оценки качества до стабильной эксплуатации."
+      "Уверенно работаю с разработкой на основе ИИ-агентов: выстраиваю и управляю многоагентными системами, контролирую ход выполнения задач в реальном времени, провожу аудит результатов как самостоятельно, так и с помощью самих агентов. В повседневной работе активно использую OpenCode CLI и DeepSeek v4 Flash.",
+      "Строю пайплайны, в которых агенты параллельно выполняют рутинные и сложные инженерные задачи — от генерации кода и рефакторинга до анализа данных и подготовки тестов. Это позволяет сокращать время на типовые этапы разработки в 3–5 раз, снижать количество ошибок за счёт автоматического аудита и быстрее доводить решения до рабочего состояния, сохраняя при этом полный контроль над качеством."
     ],
-    "items": ["Python", "PyTorch", "scikit-learn", "LLM APIs", "RAG", "Prompt Engineering", "ONNX", "ML.NET"]
+    "items": ["AI Agents", "Multi-Agent Systems", "OpenCode", "DeepSeek v4 Flash", "Agent Orchestration", "Task Monitoring", "Automated Audit", "Code Generation", "Refactoring", "AI Pipelines", "Prompt Engineering"]
   },
   {
     "id": "devops",
     "title": "DevOps / Tooling",
     "description": [
-      "Автоматизация сборки, доставки и эксплуатации сервисов.",
-      "Настраиваю CI/CD, контейнеризацию и мониторинг, чтобы релизы были предсказуемыми."
+      "Работал с DevOps-практиками и инфраструктурой. Настраивал и деплоил собственные Docker-контейнеры, работал с Nginx для проксирования и балансировки нагрузки.",
+      "Создавал и поддерживал CI/CD-пайплайны на GitLab CI/CD, развёрнутые на локальных машинах компании. Имею уверенный опыт работы в Linux-окружении для настройки серверов, автоматизации процессов и сопровождения приложений."
     ],
-    "items": ["Git", "GitHub Actions", "Docker", "Kubernetes", "Linux", "CI/CD", "Prometheus", "Grafana"]
+    "items": ["Docker", "Nginx", "GitLab CI/CD", "CI/CD", "Linux", "Containerization", "Deployment", "Server Administration"]
+  },
+  {
+    "id": "other",
+    "title": "Разное",
+    "description": [
+      "Занимался programmatic SEO и автоматизацией SMM. Подтягивал по Java и Kotlin Junior-разработчиков.",
+      "В свободное время экспериментирую с Golang и Rust. Интересуюсь GameDev и Unity."
+    ],
+    "items": ["SEO", "SMM", "Java", "Kotlin", "Golang", "Rust", "Unity", "FFmpeg", "Stable Diffusion"]
   }
 ]

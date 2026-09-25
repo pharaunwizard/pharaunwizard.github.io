@@ -1,36 +1,45 @@
 [
   {
-    "id": "proj-marscv",
+    "id": "proj-cv",
     "title": "Mars CV",
-    "description": "Одностраничное портфолио-резюме на Blazor WebAssembly с марсианской темой, JSON-контентом и аккордеон-таймлайном опыта.",
-    "technologies": ["Blazor WebAssembly", ".NET 10", "C#", "CSS", "JavaScript Interop"],
-    "repoUrl": "https://github.com/ivan-marsov/mars-cv",
-    "demoUrl": "https://mars-cv.azurestaticapps.net/",
-    "imageUrl": null
-  },
-  {
-    "id": "proj-fastqueue",
-    "title": "FastQueue",
-    "description": "Лёгкая библиотека для фоновой обработки задач в .NET с поддержкой приоритетов, повторов и распределённых воркеров.",
-    "technologies": [".NET", "C#", "Redis", "NuGet"],
-    "repoUrl": "https://github.com/ivan-marsov/fastqueue",
+    "description": "Одностраничное портфолио-резюме на Blazor WebAssembly, JSON-контентом и аккордеон-таймлайном опыта.",
+    "technologies": ["ASP.NET Core", "Blazor WebAssembly", ".NET 10", "C#", "CSS", "JavaScript Interop"],
+    "repoUrl": null,
     "demoUrl": null,
     "imageUrl": null
   },
   {
-    "id": "proj-apimonitor",
-    "title": "ApiMonitor",
-    "description": "Сервис мониторинга здоровья HTTP-API: проверки доступности, метрики latency и алерты при деградации.",
-    "technologies": ["ASP.NET Core", "C#", "PostgreSQL", "Prometheus", "Docker"],
-    "repoUrl": "https://github.com/ivan-marsov/api-monitor",
+    "id": "proj-wizardbot",
+    "title": "WizardBot",
+    "description": "WPF приложение для платформы Twitch. Озвучивает сообщения из чата трансляции мемным голосом. Заменяет символьные эмодзи на пользовательские и озвучивает их. Не требует токенов, работает локально.",
+    "technologies": [".NET 10", "C#", "WPF", "Native AOT", "SQLite", "Entity Framework Core", "Twitch API", "Serilog"],
+    "repoUrl": null,
     "demoUrl": null,
     "imageUrl": null
   },
   {
-    "id": "proj-jsonconfig",
-    "title": "JsonConfig",
-    "description": "Утилита командной строки для валидации и форматирования JSON-конфигов с поддержкой схем.",
-    "technologies": ["C#", ".NET", "System.Text.Json"],
+    "id": "proj-suggestions-parser",
+    "title": "suggestions-parser",
+    "description": "Консольная утилита для сбора поисковых подсказок с Google поиска и Youtube. Поддерживает прямой перебор по A-Z, суффиксные и префиксные дополнения, разбиение на уровни относительной частотности. Поддерживает прокси. Использует недокументированные API, не требует аккаунтов или токенов авторизации.",
+    "technologies": [".NET 8", "C#", "Serilog", "SQLite"],
+    "repoUrl": null,
+    "demoUrl": null,
+    "imageUrl": null
+  },
+  {
+    "id": "proj-playlistForge",
+    "title": "PlaylistForge",
+    "description": "Консольная утилита на Kotlin для автоматизированного создания play-листов на Youtube. Поддерживает множественные аккаунты и автоматическую проверку конкуренции для Title play-листа.",
+    "technologies": ["Kotlin", "JVM", "NewPipeExtractor", "YouTube Data API", "SQLite"],
+    "repoUrl": null,
+    "demoUrl": null,
+    "imageUrl": null
+  },
+  {
+    "id": "proj-modem-switcher",
+    "title": "ModemSwitcher",
+    "description": "Windows Forms утилита для управления модемом Huawei E3372. Позволяет поднимать локальную мобильную проксю с большим пулом резидентских ip адресов. Использует недокументированное API модема.",
+    "technologies": [".NET 5", "С#", "Windows Forms"],
     "repoUrl": null,
     "demoUrl": null,
     "imageUrl": null
