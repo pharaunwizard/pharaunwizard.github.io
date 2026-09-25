@@ -547,6 +547,11 @@ html.app-loaded .boot-skeleton {
     max-width: 60ch;
 }
 
+.contacts__notice {
+    margin-top: var(--space-4);
+    color: var(--color-accent-strong);
+}
+
 .contacts__list {
     list-style: none;
     margin: 0;
@@ -763,6 +768,12 @@ button.contact__link {
 
 .hero__cta {
     margin: 0;
+}
+
+.hero__notice {
+    margin-top: var(--space-3);
+    color: var(--color-accent-strong);
+    font-size: var(--fs-small);
 }
 
 .hero__scroll {

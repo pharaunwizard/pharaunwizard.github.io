@@ -18,6 +18,7 @@
                 @foreach (var contact in profile.Contacts)
                 {
                     var isEmail = contact.Type.Equals("email", StringComparison.OrdinalIgnoreCase);
+                    var isUnavailable = IsUnavailable(contact.Url);
                     <li class="contact contact--@contact.Type">
                         @if (isEmail)
                         {
@@ -26,6 +27,13 @@
                                 <span class="contact__label">@contact.Label:</span>
                                 <span class="contact__value">@EmailAddress(contact)</span>
                             </span>
+                        }
+                        else if (isUnavailable)
+                        {
+                            <button type="button" class="contact__link" data-type="@contact.Type" @onclick="() => hhUnavailable = true">
+                                <ContactIcon Type="@contact.Type" />
+                                <span class="contact__label">@contact.Label</span>
+                            </button>
                         }
                         else
                         {
@@ -37,12 +45,17 @@
                     </li>
                 }
             </ul>
+            @if (hhUnavailable)
+            {
+                <p class="contacts__notice" role="status">Резюме на hh.ru пока недоступно</p>
+            }
         }
     </div>
 </section>
 
 @code {
     private Profile? profile;
+    private bool hhUnavailable;
 
     protected override async Task OnInitializedAsync()
     {
@@ -53,4 +66,7 @@
         => contact.Url.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase)
             ? contact.Url["mailto:".Length..]
             : contact.Url;
+
+    private static bool IsUnavailable(string? url)
+        => string.IsNullOrWhiteSpace(url) || url.Contains("000000000000000000000000");
 }
