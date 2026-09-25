@@ -1,7 +1,7 @@
 using System.Net.Http.Json;
-using MarsCV.Models;
+using WizardCV.Models;
 
-namespace MarsCV.Services;
+namespace WizardCV.Services;
 
 public class ContentService
 {

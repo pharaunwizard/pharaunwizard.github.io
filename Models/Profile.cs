@@ -1,4 +1,4 @@
-namespace MarsCV.Models;
+namespace WizardCV.Models;
 
 public class Profile
 {
