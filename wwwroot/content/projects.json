@@ -1,7 +1,7 @@
 [
   {
     "id": "proj-cv",
-    "title": "Mars CV",
+    "title": "WizardCV",
     "description": "Одностраничное портфолио-резюме на Blazor WebAssembly с JSON-контентом и таймлайном-аккордеоном опыта.",
     "technologies": ["ASP.NET Core", "Blazor WebAssembly", ".NET 10", "C#", "CSS", "JavaScript Interop"],
     "repoUrl": null,
