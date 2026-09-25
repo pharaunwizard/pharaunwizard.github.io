@@ -2,7 +2,7 @@
   {
     "id": "proj-cv",
     "title": "Mars CV",
-    "description": "Одностраничное портфолио-резюме на Blazor WebAssembly, JSON-контентом и аккордеон-таймлайном опыта.",
+    "description": "Одностраничное портфолио-резюме на Blazor WebAssembly с JSON-контентом и таймлайном-аккордеоном опыта.",
     "technologies": ["ASP.NET Core", "Blazor WebAssembly", ".NET 10", "C#", "CSS", "JavaScript Interop"],
     "repoUrl": null,
     "demoUrl": null,
@@ -11,7 +11,7 @@
   {
     "id": "proj-wizardbot",
     "title": "WizardBot",
-    "description": "WPF приложение для платформы Twitch. Озвучивает сообщения из чата трансляции мемным голосом. Заменяет символьные эмодзи на пользовательские и озвучивает их. Не требует токенов, работает локально.",
+    "description": "WPF-приложение для Twitch: озвучивает сообщения из чата мемным голосом, заменяет символьные эмодзи на пользовательские и тоже их озвучивает. Работает локально и не требует токенов.",
     "technologies": [".NET 10", "C#", "WPF", "Native AOT", "SQLite", "Entity Framework Core", "Twitch API", "Serilog"],
     "repoUrl": null,
     "demoUrl": null,
@@ -20,7 +20,7 @@
   {
     "id": "proj-suggestions-parser",
     "title": "suggestions-parser",
-    "description": "Консольная утилита для сбора поисковых подсказок с Google поиска и Youtube. Поддерживает прямой перебор по A-Z, суффиксные и префиксные дополнения, разбиение на уровни относительной частотности. Поддерживает прокси. Использует недокументированные API, не требует аккаунтов или токенов авторизации.",
+    "description": "Консольная утилита для сбора поисковых подсказок из Google и YouTube. Поддерживает полный перебор по A–Z, префиксные и суффиксные дополнения, разбиение на уровни относительной частотности, а также работу через прокси. Использует недокументированные API и не требует аккаунтов или токенов авторизации.",
     "technologies": [".NET 8", "C#", "Serilog", "SQLite"],
     "repoUrl": null,
     "demoUrl": null,
@@ -29,7 +29,7 @@
   {
     "id": "proj-playlistForge",
     "title": "PlaylistForge",
-    "description": "Консольная утилита на Kotlin для автоматизированного создания play-листов на Youtube. Поддерживает множественные аккаунты и автоматическую проверку конкуренции для Title play-листа.",
+    "description": "Консольная утилита на Kotlin для автоматизированного создания плейлистов на YouTube. Поддерживает несколько аккаунтов и автоматическую проверку конкуренции по названию (Title) плейлиста.",
     "technologies": ["Kotlin", "JVM", "NewPipeExtractor", "YouTube Data API", "SQLite"],
     "repoUrl": null,
     "demoUrl": null,
@@ -38,8 +38,8 @@
   {
     "id": "proj-modem-switcher",
     "title": "ModemSwitcher",
-    "description": "Windows Forms утилита для управления модемом Huawei E3372. Позволяет поднимать локальную мобильную проксю с большим пулом резидентских ip адресов. Использует недокументированное API модема.",
-    "technologies": [".NET 5", "С#", "Windows Forms"],
+    "description": "Утилита на Windows Forms для управления модемом Huawei E3372. Позволяет поднимать локальное мобильное прокси с большим пулом резидентских IP-адресов. Использует недокументированный API модема.",
+    "technologies": [".NET 5", "C#", "Windows Forms"],
     "repoUrl": null,
     "demoUrl": null,
     "imageUrl": null
