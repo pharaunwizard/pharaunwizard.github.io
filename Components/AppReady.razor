@@ -17,7 +17,7 @@
                 Content.GetProjectsAsync(),
                 Content.GetSkillsAsync());
 
-            await JS.InvokeVoidAsync("marsCv.appReady", ".hero__photo img");
+            await JS.InvokeVoidAsync("wizardCv.appReady", ".hero__photo img");
         }
         catch (JSDisconnectedException)
         {

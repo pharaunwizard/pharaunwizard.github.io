@@ -1,6 +1,6 @@
-window.marsCv = window.marsCv || {};
+window.wizardCv = window.wizardCv || {};
 
-window.marsCv.appReady = function (photoSelector) {
+window.wizardCv.appReady = function (photoSelector) {
     var done = function () {
         requestAnimationFrame(function () {
             requestAnimationFrame(function () {
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }).observe(ui, { attributes: true, attributeFilter: ['style', 'class'] });
 });
 
-window.marsCv.initReveal = function () {
+window.wizardCv.initReveal = function () {
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         return 0;
     }
