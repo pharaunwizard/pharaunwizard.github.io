@@ -559,6 +559,13 @@ html.app-loaded .boot-skeleton {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-4);
+    width: 100%;
+    max-width: 100%;
+}
+
+.contact {
+    min-width: 0;
+    max-width: 100%;
 }
 
 .contact__link {
@@ -572,6 +579,12 @@ html.app-loaded .boot-skeleton {
     background: var(--color-surface);
     color: var(--color-sand);
     font-weight: 600;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.contact__label {
+    white-space: nowrap;
 }
 
 .contact__link:hover {
