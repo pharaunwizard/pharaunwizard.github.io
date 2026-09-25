@@ -563,6 +563,7 @@ html.app-loaded .boot-skeleton {
 
 .contact__link {
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: var(--space-2);
     padding: var(--space-3) var(--space-5);
@@ -603,6 +604,9 @@ button.contact__link {
     color: var(--color-text-muted);
     font-weight: 400;
     user-select: text;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .contact__icon {
