@@ -47,12 +47,15 @@ function Get-RepoSlug {
 function Wait-GitHubActions($slug) {
     if ([string]::IsNullOrWhiteSpace($slug)) { return }
     $sha = (git rev-parse HEAD).Trim()
+    $actionsUrl = "https://github.com/$slug/actions"
     Write-Step "Ожидаю GitHub Actions для $($sha.Substring(0,7))..."
+    $fails = 0
     for ($i = 0; $i -lt 40; $i++) {
         Start-Sleep -Seconds 15
         try {
             $runs = Invoke-RestMethod -Uri "https://api.github.com/repos/$slug/actions/runs?per_page=5" `
-                -Headers @{ 'User-Agent' = 'wizardcv-deploy' } -TimeoutSec 30
+                -Headers @{ 'User-Agent' = 'wizardcv-deploy' } -TimeoutSec 20
+            $fails = 0
             $run = $runs.workflow_runs | Where-Object { $_.head_sha -eq $sha } | Select-Object -First 1
             if ($null -eq $run) { Write-Warn "запуск ещё не появился..."; continue }
             if ($run.status -eq 'completed') {
@@ -63,9 +66,17 @@ function Wait-GitHubActions($slug) {
             }
             Write-Warn "статус: $($run.status)..."
         }
-        catch { Write-Warn "не удалось опросить API, повтор..." }
+        catch {
+            $fails++
+            if ($fails -ge 3) {
+                Write-Warn "GitHub API недоступен/лимит ($($_.Exception.Message))."
+                Write-Warn "Проверь статус вручную: $actionsUrl"
+                return
+            }
+            Write-Warn "API недоступен, повтор ($fails/3)..."
+        }
     }
-    Write-Warn "Не дождался завершения. Смотри вручную: https://github.com/$slug/actions"
+    Write-Warn "Не дождался завершения. Смотри вручную: $actionsUrl"
 }
 
 function Invoke-Deploy {
