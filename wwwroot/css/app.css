@@ -547,11 +547,6 @@ html.app-loaded .boot-skeleton {
     max-width: 60ch;
 }
 
-.contacts__notice {
-    margin-top: var(--space-4);
-    color: var(--color-accent-strong);
-}
-
 .contacts__list {
     list-style: none;
     margin: 0;
