@@ -23,30 +23,11 @@
                 <p class="hero__role">@profile.Role</p>
                 <p class="hero__offer">@profile.Offer</p>
                 <div class="hero__actions">
-                    @if (hh is not null)
-                    {
-                        @if (IsUnavailable(hh.Url))
-                        {
-                            <button type="button" class="btn btn--accent hero__cta" @onclick="() => hhUnavailable = true">
-                                Резюме на hh.ru
-                            </button>
-                        }
-                        else
-                        {
-                            <a class="btn btn--accent hero__cta" href="@hh.Url" target="_blank" rel="noopener noreferrer">
-                                Резюме на hh.ru
-                            </a>
-                        }
-                    }
                     <a class="hero__scroll" href="#about">
                         Подробнее
                         <span class="hero__scroll-arrow" aria-hidden="true">↓</span>
                     </a>
                 </div>
-                @if (hhUnavailable)
-                {
-                    <p class="hero__notice" role="status">Резюме на hh.ru пока недоступно</p>
-                }
             </div>
         }
     </div>
@@ -71,15 +52,9 @@
     };
 
     private Profile? profile;
-    private ContactLink? hh;
-    private bool hhUnavailable;
 
     protected override async Task OnInitializedAsync()
     {
         profile = await Content.GetProfileAsync();
-        hh = profile?.Contacts.FirstOrDefault(c => c.Type == "hh");
     }
-
-    private static bool IsUnavailable(string? url)
-        => string.IsNullOrWhiteSpace(url);
 }

@@ -783,16 +783,6 @@ button.contact__link {
     margin-top: var(--space-5);
 }
 
-.hero__cta {
-    margin: 0;
-}
-
-.hero__notice {
-    margin-top: var(--space-3);
-    color: var(--color-accent-strong);
-    font-size: var(--fs-small);
-}
-
 .hero__scroll {
     display: inline-flex;
     flex-direction: row;
@@ -856,11 +846,6 @@ button.contact__link {
         justify-content: center;
         gap: var(--space-3);
         width: 100%;
-    }
-
-    .hero__cta {
-        padding: 0.7em 1.1em;
-        font-size: 0.95rem;
     }
 }
 
